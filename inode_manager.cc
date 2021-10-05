@@ -1,12 +1,12 @@
 #include "inode_manager.h"
 
-#define DEBUG 1
-#define debug_log(...) \
-    if(DEBUG){         \
+#define DEBUG 0
+#define debug_log(...) do{ \
+    if(DEBUG){ \
       printf("[INFO]File: %s\t line: %d: ", __FILE__, __LINE__); \
-      printf(__VA_ARGS__);                               \
-      fflush(stdout);        \
-    }                  \
+      printf(__VA_ARGS__); \
+      fflush(stdout); \
+    } }while(0); \
 
 // disk layer -----------------------------------------
 
