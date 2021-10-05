@@ -1,5 +1,13 @@
 #include "inode_manager.h"
 
+#define DEBUG 1
+#define debug_log(...) \
+    if(DEBUG){         \
+      printf("[INFO]File: %s\t line: %d: ", __FILE__, __LINE__); \
+      printf(__VA_ARGS__);                               \
+      fflush(stdout);        \
+    }                  \
+
 // disk layer -----------------------------------------
 
 disk::disk()
@@ -97,8 +105,7 @@ uint32_t inode_manager::alloc_inode(uint32_t type)
    */
   char buf[BLOCK_SIZE];
   inode_t *ino;
-  uint32_t inum = 1;
-  for(; inum < INODE_NUM; inum++){
+  for(uint32_t inum = 1; inum < INODE_NUM; inum++){
     bm->read_block(IBLOCK(inum, bm->sb.nblocks), buf);
     ino = (inode_t*)buf + inum%IPB;
     if(ino->type == 0){
@@ -173,6 +180,7 @@ void inode_manager::put_inode(uint32_t inum, inode_t *ino)
 }
 
 #define MIN(a,b) ((a)<(b) ? (a) : (b))
+#define MAX(a,b) (((int)(a))<((int)(b)) ? ((int)(b)) : ((int)(a)))
 
 /* Get all the data of a file by inum. 
  * Return alloced data, should be freed by caller. */
@@ -193,17 +201,18 @@ void inode_manager::read_file(uint32_t inum, char **buf_out, int *size)
   blockid_t* block_array = ino->blocks;
   unsigned int block_size = file_size/BLOCK_SIZE + 1;
   char* buf_p = *buf_out = (char*)malloc(block_size * BLOCK_SIZE);
-
   unsigned int direct_block_size = MIN(block_size, NDIRECT);
-  for(blockid_t i = 0; i < direct_block_size; i++, buf_p += BLOCK_SIZE){
+  debug_log("read file inode: %d\tsize: %d\tblock size: %d\tdirect block size: %d\n", inum, file_size, block_size, direct_block_size);
+
+  for(unsigned int i = 0; i < direct_block_size; i++, buf_p += BLOCK_SIZE){
     bm->read_block(block_array[i], buf_p);
   }
-  if(direct_block_size > NDIRECT){
-    unsigned int undirect_block_size = block_size - NDIRECT;
-    blockid_t inderect_block[BLOCK_SIZE];
-    bm->read_block(block_array[NDIRECT], (char*)inderect_block);
-    for(blockid_t i = 0; i < undirect_block_size; i++, buf_p += BLOCK_SIZE){
-      bm->read_block(inderect_block[i], buf_p);
+  if(block_size > NDIRECT){
+    unsigned int indirect_block_size = block_size - NDIRECT;
+    blockid_t indirect_block[NINDIRECT];
+    bm->read_block(block_array[NDIRECT], (char*)indirect_block);
+    for(unsigned int i = 0; i < indirect_block_size; i++, buf_p += BLOCK_SIZE){
+      bm->read_block(indirect_block[i], buf_p);
     }
   }
   delete ino;
@@ -220,23 +229,76 @@ void inode_manager::write_file(uint32_t inum, const char *buf, int size)
    */
   inode_t* ino = get_inode(inum);
   unsigned int original_size = ino->size;
-  unsigned int file_size = MIN(size, original_size);
-  ino->size = file_size;
-  if(file_size == size){ //smaller
-    //free the spare blocks
-    unsigned int block_size = file_size/BLOCK_SIZE + 1;
-    unsigned int original_block_size = original_size/BLOCK_SIZE + 1;
-    unsigned int direct_block_size = MIN(block_size, NDIRECT);
-    for(blockid_t i = 0; i < direct_block_size; i++, buf += BLOCK_SIZE){
-      bm->write_block(ino->blocks[i], buf);
+  ino->size = size;
+  debug_log("write file inode: %d\t size: %d\toriginal size: %d\n", inum, size, original_size);
+  blockid_t* block_array = ino->blocks;
+  unsigned int block_size = size/BLOCK_SIZE + 1;
+  unsigned int original_block_size = original_size == 0 ? 0 : original_size/BLOCK_SIZE + 1;
+  unsigned int direct_block_size = MIN(block_size, NDIRECT);
+  unsigned int original_direct_block_size = MIN(original_block_size, NDIRECT);
+  
+  if(size <= original_size){
+    //new file is smaller
+    for(unsigned int i = 0; i < direct_block_size; i++, buf += BLOCK_SIZE){
+      bm->write_block(block_array[i], buf);
     }
     
-  } else { //bigger
-    //add blocks into inode::blocks
-    for(; file_size > 0; file_size -= BLOCK_SIZE){
-      blockid_t new_block = bm->alloc_block();
+    if(original_block_size > NDIRECT){
+      unsigned int indirect_block_size = MAX(block_size - NDIRECT, 0);
+      unsigned int original_indirect_block_size = original_block_size - NDIRECT;
+      blockid_t indirect_block[NINDIRECT];
+      bm->read_block(block_array[NDIRECT], (char*)indirect_block);
+      for(unsigned int i = 0; i < indirect_block_size; i++, buf += BLOCK_SIZE){
+        bm->write_block(indirect_block[i], buf);
+      }
+      //free the indirect spare blocks
+      for(unsigned int i = indirect_block_size; i < original_indirect_block_size; i++){
+        bm->free_block(indirect_block[i]);
+      }
+    }
+    //free the direct spare blocks
+    for(unsigned int i = direct_block_size; i < original_direct_block_size; i++){
+      bm->free_block(block_array[i]);
+    }
+    
+
+  } else {
+    //new file is bigger
+
+    //add direct blocks
+    for(unsigned int i = original_direct_block_size; i < direct_block_size; i++){
+      block_array[i] = bm->alloc_block();
+    }
+    for(unsigned int i = 0; i < direct_block_size; i++, buf += BLOCK_SIZE){
+      bm->write_block(block_array[i], buf);
+    }
+
+    if(original_block_size > NDIRECT){
+      unsigned int indirect_block_size = block_size - NDIRECT;
+      unsigned int original_indirect_block_size = original_block_size - NDIRECT;
+      blockid_t indirect_block[NINDIRECT];
+      bm->read_block(block_array[NDIRECT], (char*)indirect_block);
+      //add indirect blocks
+      for(unsigned int i = original_indirect_block_size; i < indirect_block_size; i++){
+          indirect_block[i] = bm->alloc_block();
+      }
+      for(unsigned int i = 0; i < indirect_block_size; i++, buf += BLOCK_SIZE){
+        bm->write_block(indirect_block[i], buf);
+      }
+      bm->write_block(block_array[NDIRECT], (char*)indirect_block);
+    } else if(block_size > NDIRECT){
+      blockid_t indirect_block[NINDIRECT];
+      block_array[NDIRECT] = bm->alloc_block();
+      unsigned int indirect_block_size = block_size - NDIRECT;
+      for(unsigned int i = 0; i < indirect_block_size; i++, buf += BLOCK_SIZE){
+        blockid_t new_indirect_block = bm->alloc_block();
+        indirect_block[i] = new_indirect_block;
+        bm->write_block(new_indirect_block, buf);
+      }
+      bm->write_block(block_array[NDIRECT], (char*)indirect_block);
     }
   }
+  put_inode(inum, ino);
   delete ino;
 }
 
@@ -248,6 +310,10 @@ void inode_manager::getattr(uint32_t inum, extent_protocol::attr &a)
    * you can refer to "struct attr" in extent_protocol.h
    */
   inode_t* ino = get_inode(inum);
+  if(ino == NULL){
+    printf("invalid inode\n");
+    return;
+  }
   a.type = ino->type;
   a.atime = ino->atime;
   a.mtime = ino->mtime;
@@ -262,6 +328,31 @@ void inode_manager::remove_file(uint32_t inum)
    * your code goes here
    * note: you need to consider about both the data block and inode of the file
    */
-  
-  return;
+  inode_t* ino = get_inode(inum);
+  if(ino == NULL){
+    printf("invalid inode number\n");
+    return;
+  }
+  unsigned int size = ino->size;
+  unsigned int block_size = size/BLOCK_SIZE + 1;
+  unsigned int direct_block_size = MIN(block_size, NDIRECT);
+  blockid_t* block_array = ino->blocks;
+  debug_log("remove file inode: %d\tsize: %d\tblock size: %d\n", inum, size, block_size);
+  //free direct blocks
+  for(unsigned int i = 0; i < direct_block_size; i++){
+    bm->free_block(block_array[i]);
+  }
+  //free indirect blocks
+  if(block_size > NDIRECT){
+    unsigned int indirect_block_size = block_size - NDIRECT;
+    blockid_t indirect_block[NINDIRECT];
+    bm->read_block(block_array[NDIRECT], (char*)indirect_block);
+    for(unsigned int i = 0; i < indirect_block_size; i++){
+      bm->free_block(indirect_block[i]);
+    }
+    bm->free_block(block_array[NDIRECT]);
+  }
+  //free inode
+  free_inode(inum);
+  delete ino;
 }
