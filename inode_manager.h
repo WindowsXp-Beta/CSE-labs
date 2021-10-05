@@ -56,15 +56,17 @@ class block_manager {
 
 // Block containing inode i
 #define IBLOCK(i, nblocks)     ((nblocks)/BPB + (i)/IPB + 3)
+// 找到inode number = i的inode所在的Block
 
 // Bitmap bits per block
 #define BPB           (BLOCK_SIZE*8)
+// 一个block有多少bit，也就是一个block作bitmap的话能表示多少个block的free情况
 
 // Block containing bit for block b
 #define BBLOCK(b) ((b)/BPB + 2)
 
 #define NDIRECT 100
-#define NINDIRECT (BLOCK_SIZE / sizeof(uint))
+#define NINDIRECT (BLOCK_SIZE / sizeof(uint)) //二级block
 #define MAXFILE (NDIRECT + NINDIRECT)
 
 typedef struct inode {
