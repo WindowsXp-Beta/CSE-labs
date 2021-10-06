@@ -64,7 +64,7 @@ int extent_server::getattr(extent_protocol::extentid_t id, extent_protocol::attr
   memset(&attr, 0, sizeof(attr));
   im->getattr(id, attr);
   a = attr;
-
+  if(a.type == 0) return extent_protocol::NOENT;
   return extent_protocol::OK;
 }
 

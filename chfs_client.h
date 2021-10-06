@@ -34,6 +34,7 @@ class chfs_client {
  private:
   static std::string filename(inum);
   static inum n2i(std::string);
+  static size_t string_size(char* p);//return the size of a string including \0
 
  public:
   chfs_client();

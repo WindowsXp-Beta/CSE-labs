@@ -6,7 +6,7 @@
       printf("[INFO]File: %s\t line: %d: ", __FILE__, __LINE__); \
       printf(__VA_ARGS__); \
       fflush(stdout); \
-    } }while(0); \
+    } }while(0);
 
 // disk layer -----------------------------------------
 
@@ -311,7 +311,7 @@ void inode_manager::getattr(uint32_t inum, extent_protocol::attr &a)
    */
   inode_t* ino = get_inode(inum);
   if(ino == NULL){
-    printf("invalid inode\n");
+    printf("[ERROR]invalid inode\n");
     return;
   }
   a.type = ino->type;
