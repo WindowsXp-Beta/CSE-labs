@@ -37,8 +37,7 @@ int id() {
 // less correct values for the access/modify/change times
 // (atime, mtime, and ctime), and correct values for file sizes.
 //
-chfs_client::status
-getattr(chfs_client::inum inum, struct stat &st)
+chfs_client::status getattr(chfs_client::inum inum, struct stat &st)
 {
     chfs_client::status ret;
 
@@ -117,18 +116,30 @@ fuseserver_getattr(fuse_req_t req, fuse_ino_t ino,
 // On success, call fuse_reply_attr, passing the file's new
 // attributes (from a call to getattr()).
 //
-void
-fuseserver_setattr(fuse_req_t req, fuse_ino_t ino, struct stat *attr,
+void fuseserver_setattr(fuse_req_t req, fuse_ino_t ino, struct stat *attr,
         int to_set, struct fuse_file_info *fi)
 {
     printf("fuseserver_setattr 0x%x\n", to_set);
     if (FUSE_SET_ATTR_SIZE & to_set) {
         printf("   fuseserver_setattr set size to %zu\n", attr->st_size);
 
-#if 0
+#if 1
     struct stat st;
     // Change the above line to "#if 1", and your code goes here
     // Note: fill st using getattr before fuse_reply_attr
+    chfs_client::inum inum = ino; // req->in.h.nodeid;
+    chfs_client::status ret;
+    ret = chfs->setattr(inum, attr->st_size);
+    if(ret != chfs_client::OK){
+        fuse_reply_err(req, EIO);
+        return;
+    }
+    ret = getattr(inum, st);
+    if(ret != chfs_client::OK){
+        fuse_reply_err(req, ENOENT);
+        return;
+    }
+    fuse_reply_attr(req, &st, 0);
 #else
     fuse_reply_err(req, ENOSYS);
 #endif
@@ -154,8 +165,17 @@ void
 fuseserver_read(fuse_req_t req, fuse_ino_t ino, size_t size,
         off_t off, struct fuse_file_info *fi)
 {
-#if 0
+#if 1
     // Change the above "#if 0" to "#if 1", and your code goes here
+    chfs_client::inum inum = ino;
+    chfs_client::status ret;
+    std::string buf;
+    ret = chfs->read(inum, size, off, buf);
+    if(ret != chfs_client::OK){
+        fuse_reply_err(req, EIO);
+        return;
+    }
+    fuse_reply_buf(req, buf.data(), buf.size());
 #else
     fuse_reply_err(req, ENOSYS);
 #endif
@@ -183,8 +203,17 @@ fuseserver_write(fuse_req_t req, fuse_ino_t ino,
         const char *buf, size_t size, off_t off,
         struct fuse_file_info *fi)
 {
-#if 0
+#if 1
     // Change the above line to "#if 1", and your code goes here
+    chfs_client::inum inum = ino;
+    chfs_client::status ret;
+    size_t bytes_written;
+    ret = chfs->write(inum, size, off, buf, bytes_written);
+    if(ret != chfs_client::OK){
+        fuse_reply_err(req, EIO);
+        return;
+    }
+    fuse_reply_write(req, bytes_written);
 #else
     fuse_reply_err(req, ENOSYS);
 #endif

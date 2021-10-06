@@ -9,7 +9,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
-#define DEBUG 0
+#define DEBUG 1
 #define debug_log(...) do{ \
     if(DEBUG){ \
       printf("[INFO]File: %s\t line: %d: ", __FILE__, __LINE__); \
@@ -176,7 +176,6 @@ int chfs_client::create(inum parent, const char *name, mode_t mode, inum &ino_ou
         goto release;
     }
     ino_out = new_file;
-    debug_log("new file's inode is %lld\n", new_file);
     buf.append(name);
     buf.push_back('\0');
     buf.append(filename(new_file));
@@ -311,12 +310,21 @@ int
 chfs_client::read(inum ino, size_t size, off_t off, std::string &data)
 {
     int r = OK;
-    debug_log("read file %lld\n", ino);
     /*
      * your code goes here.
      * note: read using ec->get().
      */
+    std::string buf;
+    if(ec->get(ino, buf) != OK){
+        r = NOENT;
+        goto release;
+    }
+    debug_log("read file %lld\tsize is %ld\toffset is %ld\tfile size is %ld\n", ino, size, off, buf.size());
+    if(off <= buf.size()){
+        data = buf.substr(off, size);
+    }
 
+release:
     return r;
 }
 
@@ -325,13 +333,31 @@ chfs_client::write(inum ino, size_t size, off_t off, const char *data,
         size_t &bytes_written)
 {
     int r = OK;
-    debug_log("write file %lld\n", ino);
+    debug_log("write file %lld\tsize is %ld\toffset is %ld\n", ino, size, off);
+    // if(size < 100)
+    // debug_log("content is %s\n", data);
     /*
      * your code goes here.
      * note: write using ec->put().
      * when off > length of original file, fill the holes with '\0'.
      */
-
+    std::string buf;
+    if(ec->get(ino, buf) != OK){
+        r = NOENT;
+        goto release;
+    }
+    if(buf.size() < off){
+        buf.resize(off);
+        bytes_written += off - buf.size();
+    }
+    buf.replace(off, size, data, size);
+    debug_log("write bytes is %ld\n", buf.size());
+    bytes_written += size;
+    if(ec->put(ino, buf) != OK){
+        r = IOERR;
+        goto release;
+    }
+release:
     return r;
 }
 
