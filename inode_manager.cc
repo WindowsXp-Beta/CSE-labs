@@ -200,7 +200,7 @@ void inode_manager::read_file(uint32_t inum, char **buf_out, int *size)
     return;
   }
   blockid_t* block_array = ino->blocks;
-  unsigned int block_size = file_size/BLOCK_SIZE + 1;
+  unsigned int block_size = (file_size -1)/BLOCK_SIZE + 1;
   char* buf_p = *buf_out = (char*)malloc(block_size * BLOCK_SIZE);
   unsigned int direct_block_size = MIN(block_size, NDIRECT);
   debug_log("read file inode: %d\tsize: %d\tblock size: %d\tdirect block size: %d\n", inum, file_size, block_size, direct_block_size);
@@ -239,17 +239,17 @@ void inode_manager::write_file(uint32_t inum, const char *buf, int size)
   ino->size = size;
   debug_log("write file inode: %d\t size: %d\toriginal size: %d\n", inum, size, original_size);
   blockid_t* block_array = ino->blocks;
-  unsigned int block_size = size/BLOCK_SIZE + 1;
-  unsigned int original_block_size = original_size == 0 ? 0 : original_size/BLOCK_SIZE + 1;
+  unsigned int block_size = (size - 1)/BLOCK_SIZE + 1;
+  unsigned int original_block_size = original_size == 0 ? 0 : ((original_size -1)/BLOCK_SIZE + 1);
   unsigned int direct_block_size = MIN(block_size, NDIRECT);
   unsigned int original_direct_block_size = MIN(original_block_size, NDIRECT);
-  
+
   if(size <= original_size){
     //new file is smaller
     for(unsigned int i = 0; i < direct_block_size; i++, buf += BLOCK_SIZE){
       bm->write_block(block_array[i], buf);
     }
-    
+
     if(original_block_size > NDIRECT){
       unsigned int indirect_block_size = MAX(block_size - NDIRECT, 0);
       unsigned int original_indirect_block_size = original_block_size - NDIRECT;
@@ -276,9 +276,11 @@ void inode_manager::write_file(uint32_t inum, const char *buf, int size)
     for(unsigned int i = original_direct_block_size; i < direct_block_size; i++){
       block_array[i] = bm->alloc_block();
     }
+    debug_log("alloc block succeed\n");
     for(unsigned int i = 0; i < direct_block_size; i++, buf += BLOCK_SIZE){
       bm->write_block(block_array[i], buf);
     }
+    debug_log("write direct blocks succeed\n");
 
     if(original_block_size > NDIRECT){
       unsigned int indirect_block_size = block_size - NDIRECT;
@@ -305,6 +307,7 @@ void inode_manager::write_file(uint32_t inum, const char *buf, int size)
       bm->write_block(block_array[NDIRECT], (char*)indirect_block);
     }
   }
+  debug_log("write file in inode layer succeed\n");
   put_inode(inum, ino);
   delete ino;
 }
@@ -341,7 +344,7 @@ void inode_manager::remove_file(uint32_t inum)
     return;
   }
   unsigned int size = ino->size;
-  unsigned int block_size = size/BLOCK_SIZE + 1;
+  unsigned int block_size = size == 0 ? 0 : ((size - 1)/BLOCK_SIZE + 1);
   unsigned int direct_block_size = MIN(block_size, NDIRECT);
   blockid_t* block_array = ino->blocks;
   debug_log("remove file inode: %d\tsize: %d\tblock size: %d\n", inum, size, block_size);

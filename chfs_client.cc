@@ -400,16 +400,18 @@ chfs_client::write(inum ino, size_t size, off_t off, const char *data,
         goto release;
     }
     if(buf.size() < off){
+        // bytes_written += off - buf.size();
         buf.resize(off);
-        bytes_written += off - buf.size();
     }
     buf.replace(off, size, data, size);
-    debug_log(true, "write bytes is %ld\n", buf.size());
     bytes_written += size;
+    debug_log(true, "write bytes is %ld\n", bytes_written);
     if(ec->put(ino, buf) != OK){
+        debug_log(false, "write file failed\n");
         r = IOERR;
         goto release;
     }
+    debug_log(true, "write file succeed\n");
 release:
     return r;
 }
@@ -423,6 +425,7 @@ int chfs_client::unlink(inum parent, const char *name)
      * note: you should remove the file using ec->remove,
      * and update the parent directory content.
      */
+    debug_log(true, "unlink file %s in directory %lld\n", name, parent);
     inum ino_delete;
     bool found = false;
     std::string buf;

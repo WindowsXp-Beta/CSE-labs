@@ -220,7 +220,7 @@ fuseserver_write(fuse_req_t req, fuse_ino_t ino,
     size_t bytes_written;
     ret = chfs->write(inum, size, off, buf, bytes_written);
     if(ret != chfs_client::OK){
-        fuse_reply_err(req, EIO);
+        fuse_reply_err(req, ENOENT);
         return;
     }
     fuse_reply_write(req, bytes_written);
