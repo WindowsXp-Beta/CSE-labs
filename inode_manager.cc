@@ -1,4 +1,5 @@
 #include "inode_manager.h"
+#include <ctime>
 
 #define DEBUG 0
 #define debug_log(...) do{ \
@@ -218,6 +219,7 @@ void inode_manager::read_file(uint32_t inum, char **buf_out, int *size)
   delete ino;
 }
 
+
 /* alloc/free blocks if needed */
 void inode_manager::write_file(uint32_t inum, const char *buf, int size)
 {
@@ -228,6 +230,11 @@ void inode_manager::write_file(uint32_t inum, const char *buf, int size)
    * is larger or smaller than the size of original inode
    */
   inode_t* ino = get_inode(inum);
+  std::time_t t = std::time(0);
+  ino->atime = t;
+  ino->ctime = t;
+  ino->mtime = t;
+
   unsigned int original_size = ino->size;
   ino->size = size;
   debug_log("write file inode: %d\t size: %d\toriginal size: %d\n", inum, size, original_size);

@@ -9,10 +9,14 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
-#define DEBUG 1
-#define debug_log(...) do{ \
+#define DEBUG 0
+
+// flag = true means INFO
+// flag = false means ERROR
+#define debug_log(flag, ...) do{ \
     if(DEBUG){ \
-      printf("[INFO]File: %s\t line: %d: ", __FILE__, __LINE__); \
+      if(flag) printf("[INFO]File: %s line: %d: ", __FILE__, __LINE__); \
+      else printf("[ERROR]File: %s line: %d: ", __FILE__, __LINE__); \
       printf(__VA_ARGS__); \
       fflush(stdout); \
     } }while(0);
@@ -60,8 +64,9 @@ bool chfs_client::isfile(inum inum)
     if (a.type == extent_protocol::T_FILE) {
         printf("isfile: %lld is a file\n", inum);
         return true;
-    } 
-    printf("isfile: %lld is a dir\n", inum);
+    } else if(a.type == extent_protocol::T_DIR){
+        printf("isfile: %lld is a dir\n", inum);
+    } else printf("isfile: %lld is a symlink\n", inum);
     return false;
 }
 /** Your code here for Lab...
@@ -73,7 +78,16 @@ bool chfs_client::isfile(inum inum)
 bool chfs_client::isdir(inum inum)
 {
     // Oops! is this still correct when you implement symlink?
-    return ! isfile(inum);
+    extent_protocol::attr a;
+    if (ec->getattr(inum, a) != extent_protocol::OK) {
+        printf("error getting attr\n");
+        return false;
+    }
+    if (a.type == extent_protocol::T_DIR) {
+        printf("isdir: %lld is a dir\n", inum);
+        return true;
+    }
+    return false;
 }
 
 int chfs_client::getfile(inum inum, fileinfo &fin)
@@ -115,6 +129,23 @@ release:
     return r;
 }
 
+int chfs_client::getsymlink(inum inum, symlinkinfo &sin)
+{
+    int r = OK;
+
+    printf("getsymlink %016llx\n", inum);
+    extent_protocol::attr a;
+    if (ec->getattr(inum, a) != extent_protocol::OK) {
+        r = IOERR;
+        goto release;
+    }
+    sin.atime = a.atime;
+    sin.mtime = a.mtime;
+    sin.ctime = a.ctime;
+    sin.size = a.size;
+release:
+    return r;
+}
 
 #define EXT_RPC(xx) do { \
     if ((xx) != extent_protocol::OK) { \
@@ -136,7 +167,7 @@ int chfs_client::setattr(inum ino, size_t size)
      */
     std::string buf;
     if(ec->get(ino, buf) != extent_protocol::OK){
-        printf("file not exist\n");
+        debug_log(false, "file not exist\n");
         r = IOERR;
         goto release;
     }
@@ -144,7 +175,7 @@ int chfs_client::setattr(inum ino, size_t size)
     buf.resize(size);
 
     if(ec->put(ino, buf) != OK){
-        printf("write back error\n");
+        debug_log(false, "write back error\n");
         r = IOERR;
         goto release;
     }
@@ -162,16 +193,26 @@ int chfs_client::create(inum parent, const char *name, mode_t mode, inum &ino_ou
      * note: lookup is what you need to check if file exist;
      * after create file or dir, you must remember to modify the parent infomation.
      */
-    debug_log("create file %s in %lld\n", name, parent);
+    debug_log(true, "create file %s in %lld\n", name, parent);
     std::string buf;
+    bool found = false;
+    inum new_file;
+    
     if(ec->get(parent, buf) != OK){
-        printf("parent directory not exist\n");
+        debug_log(false, "parent directory not exist\n");
         r = IOERR;
         goto release;
     }
-    inum new_file;
+
+    lookup(parent, name, found, new_file);
+    if(found){
+        debug_log(false, "file %s already exists\n", name);
+        r = EXIST;
+        goto release;
+    }
+
     if(ec->create(extent_protocol::T_FILE, new_file) != OK){
-        printf("create new file error\n");
+        debug_log(false, "create new file error\n");
         r = IOERR;
         goto release;
     }
@@ -180,10 +221,10 @@ int chfs_client::create(inum parent, const char *name, mode_t mode, inum &ino_ou
     buf.push_back('\0');
     buf.append(filename(new_file));
     buf.push_back('\0');
-    debug_log("new dirent.name is %s\tdirent.num is %s", name, filename(new_file).data());
+    debug_log(true, "new dirent.name is %s\tdirent.num is %s", name, filename(new_file).data());
     
     if(ec->put(parent, buf) != OK){
-        printf("[ERROR]update parent diretory error\n");
+        debug_log(false, "update parent diretory error\n");
         r = IOERR;
         goto release;
     }
@@ -202,14 +243,23 @@ chfs_client::mkdir(inum parent, const char *name, mode_t mode, inum &ino_out)
      * after create file or dir, you must remember to modify the parent infomation.
      */
     std::string buf;
+    debug_log(true, "create directory %s in %lld\n", name, parent);
     if(ec->get(parent, buf) != OK){
-        printf("parent directory not exist\n");
+        debug_log(false, "parent directory not exist\n");
         r = IOERR;
         goto release;
     }
     inum new_dir;
+    bool found;
+    lookup(parent, name, found, new_dir);
+    if(found){
+        debug_log(false, "dir %s already exists\n", name);
+        r = EXIST;
+        goto release;
+    }
+
     if(ec->create(extent_protocol::T_DIR, new_dir) != OK){
-        printf("create new directory error\n");
+        debug_log(false, "create new directory error\n");
         r = IOERR;
         goto release;
     }
@@ -219,7 +269,7 @@ chfs_client::mkdir(inum parent, const char *name, mode_t mode, inum &ino_out)
     buf.append(filename(new_dir));
     buf.push_back('\0');
     if(ec->put(parent, buf) != OK){
-        printf("update parent diretory error\n");
+        debug_log(false, "update parent diretory error\n");
         r = IOERR;
         goto release;
     }
@@ -240,17 +290,22 @@ chfs_client::lookup(inum parent, const char *name, bool &found, inum &ino_out)
     /*
      * format: name\0inum\0name\0inum\0
      */
-    debug_log("look for file %s in parent %lld\n", name, parent);
+    debug_log(true, "look for file %s in parent %lld\n", name, parent);
     std::string buf;
     const char* dirent_p;
     const char* end_p;
+    found = false;
     if(ec->get(parent, buf) != OK){
-        printf("parent directory not exist\n");
+        debug_log(false, "parent directory %lld not exist\n", parent);
         r = IOERR;
         goto release;
     }
+    if(!isdir(parent)){
+        debug_log(false, "parent %lld is not a directory\n", parent);
+        r = NOENT;
+        goto release;
+    }
 
-    found = false;
     dirent_p = buf.data();
     end_p = dirent_p + buf.size();
     while(dirent_p < end_p){
@@ -258,7 +313,7 @@ chfs_client::lookup(inum parent, const char *name, bool &found, inum &ino_out)
         dirent_p += dirent_name.length() + 1;
         std::string dirent_inmu(dirent_p);
         dirent_p += dirent_inmu.length() + 1;
-        debug_log("dirent.name is %s\tdirent.inum is %s\n", dirent_name.data(), dirent_inmu.data());
+        debug_log(true, "dirent.name is %s\tdirent.inum is %s\n", dirent_name.data(), dirent_inmu.data());
         if(dirent_name.compare(name) == 0){
             found = true;
             ino_out = n2i(dirent_inmu);
@@ -281,12 +336,12 @@ chfs_client::readdir(inum dir, std::list<dirent> &list)
      * and push the dirents to the list.
      */
 
-    debug_log("read directory %lld\n", dir);
+    debug_log(true, "read directory %lld\n", dir);
     std::string buf;
     const char* dirent_p;
     const char* end_p;
     if(ec->get(dir, buf) != OK){
-        printf("directory not exist\n");
+        debug_log(false, "directory %lld not exist\n", dir);
         r = IOERR;
         goto release;
     }
@@ -319,7 +374,7 @@ chfs_client::read(inum ino, size_t size, off_t off, std::string &data)
         r = NOENT;
         goto release;
     }
-    debug_log("read file %lld\tsize is %ld\toffset is %ld\tfile size is %ld\n", ino, size, off, buf.size());
+    debug_log(true, "read file %lld\tsize is %ld\toffset is %ld\tfile size is %ld\n", ino, size, off, buf.size());
     if(off <= buf.size()){
         data = buf.substr(off, size);
     }
@@ -333,9 +388,7 @@ chfs_client::write(inum ino, size_t size, off_t off, const char *data,
         size_t &bytes_written)
 {
     int r = OK;
-    debug_log("write file %lld\tsize is %ld\toffset is %ld\n", ino, size, off);
-    // if(size < 100)
-    // debug_log("content is %s\n", data);
+    debug_log(true, "write file %lld\tsize is %ld\toffset is %ld\n", ino, size, off);
     /*
      * your code goes here.
      * note: write using ec->put().
@@ -351,7 +404,7 @@ chfs_client::write(inum ino, size_t size, off_t off, const char *data,
         bytes_written += off - buf.size();
     }
     buf.replace(off, size, data, size);
-    debug_log("write bytes is %ld\n", buf.size());
+    debug_log(true, "write bytes is %ld\n", buf.size());
     bytes_written += size;
     if(ec->put(ino, buf) != OK){
         r = IOERR;
@@ -361,7 +414,7 @@ release:
     return r;
 }
 
-int chfs_client::unlink(inum parent,const char *name)
+int chfs_client::unlink(inum parent, const char *name)
 {
     int r = OK;
 
@@ -370,7 +423,108 @@ int chfs_client::unlink(inum parent,const char *name)
      * note: you should remove the file using ec->remove,
      * and update the parent directory content.
      */
+    inum ino_delete;
+    bool found = false;
+    std::string buf;
+    const char* dirent_p;
+    const char* end_p;
+    size_t pos = 0;
+    if(ec->get(parent, buf) != OK){
+        debug_log(false, "parent directory %lld not exist\n", parent);
+        r = IOERR;
+        goto release;
+    }
+    
+    dirent_p = buf.data();
+    end_p = dirent_p + buf.size();
+    while(dirent_p < end_p){
+        std::string dirent_name(dirent_p);
+        dirent_p += dirent_name.length() + 1;
+        std::string dirent_inmu(dirent_p);
+        dirent_p += dirent_inmu.length() + 1;
+        // debug_log(true, "dirent.name is %s\tdirent.inum is %s\n", dirent_name.data(), dirent_inmu.data());
+        if(dirent_name.compare(name) == 0){
+            found = true;
+            ino_delete = n2i(dirent_inmu);
+            buf.erase(pos, dirent_name.length() + dirent_inmu.length() + 2);
+            break;
+        }
+        pos += dirent_name.length() + dirent_inmu.length() + 2;
+    }
 
+    if(!found){
+        r = NOENT;
+        goto release;
+    }
+
+    if(ec->remove(ino_delete) != OK){
+        r = IOERR;
+        goto release;
+    }
+    if(ec->put(parent, buf) != OK){
+        debug_log(false, "update parent directory %lld error\n", parent);
+        r = IOERR;
+        goto release;
+    }
+
+release:
     return r;
 }
 
+int chfs_client::readlink(inum ino, std::string &buf)
+{
+    int r = OK;
+    debug_log(true, "read symlink %lld\n", ino);
+    if(ec->get(ino, buf) != OK){
+        r = IOERR;
+        goto release;
+    }
+release:
+    return r;
+}
+
+int chfs_client::symlink(inum parent, const char *link, const char* name, inum &ino_out)
+{
+    int r = OK;
+    debug_log(true, "add symlink %s for %s\n", name, link);
+    std::string buf;
+    bool found = false;
+    inum new_symlink;
+    if(ec->get(parent, buf) != OK){
+        debug_log(false, "parent directory not exist\n");
+        r = IOERR;
+        goto release;
+    }
+
+    lookup(parent, name, found, new_symlink);
+    if(found){
+        debug_log(false, "file %s already exists\n", name);
+        r = EXIST;
+        goto release;
+    }
+
+    if(ec->create(extent_protocol::T_SYMLINK, new_symlink) != OK){
+        debug_log(false, "create new symlink error\n");
+        r = IOERR;
+        goto release;
+    }
+    ino_out = new_symlink;
+    if(ec->put(new_symlink, link) != OK){
+        r = IOERR;
+        goto release;
+    }
+
+    buf.append(name);
+    buf.push_back('\0');
+    buf.append(filename(new_symlink));
+    buf.push_back('\0');
+
+    if(ec->put(parent, buf) != OK){
+        debug_log(false, "update parent diretory error\n");
+        r = IOERR;
+        goto release;
+    }
+
+release:
+    return r;
+}
