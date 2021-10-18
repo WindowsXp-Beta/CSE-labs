@@ -44,8 +44,7 @@ class chfs_client {
   static size_t string_size(char* p);//return the size of a string including \0
 
  public:
-  chfs_client();
-  chfs_client(std::string, std::string);
+  chfs_client(std::string);
 
   bool isfile(inum);
   bool isdir(inum);
