@@ -4,3 +4,5 @@
 *.DS_Store
 # tgz files upload to canvas
 519021910888-lab*.tgz
+# debug files
+*.txt
