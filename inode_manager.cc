@@ -1,7 +1,7 @@
 #include "inode_manager.h"
 #include <ctime>
 
-#define DEBUG 1
+#define DEBUG 0
 #define debug_log(...) do{ \
     if(DEBUG){ \
       printf("[INFO]File: %s\t line: %d: ", __FILE__, __LINE__); \
@@ -240,7 +240,7 @@ void inode_manager::write_file(uint32_t inum, const char *buf, int size)
     for(unsigned int i = block_num; i < original_block_num; i++){
       free_nth_block(ino, i);
     }
-    if(original_block_num >= NDIRECT && block_num < NDIRECT){
+    if(original_block_num > NDIRECT && block_num <= NDIRECT){
       bm->free_block(ino->blocks[NDIRECT]);
     }
   } else {
@@ -251,15 +251,14 @@ void inode_manager::write_file(uint32_t inum, const char *buf, int size)
 
   if(size != 0){
     //write until last block
-    unsigned i = 0;
-    for (; i + 1 < block_num; i++) {
-      content.assign(buf + BLOCK_SIZE * i, BLOCK_SIZE);
+    for (unsigned i = 0; i + 1 < block_num; i++, buf += BLOCK_SIZE) {
+      content.assign(buf, BLOCK_SIZE);
       write_nth_block(ino, i, content);
     }
 
     //write last block, resize to BLOCK_SIZE to avoid undefined behavior when memcpy
     uint32_t remain_bytes = size - (block_num - 1) * BLOCK_SIZE;
-    content.assign(buf + BLOCK_SIZE * i, remain_bytes);
+    content.assign(buf, remain_bytes);
     content.resize(BLOCK_SIZE);
     write_nth_block(ino, block_num - 1, content);
   }
@@ -301,13 +300,12 @@ void inode_manager::remove_file(uint32_t inum)
   }
   unsigned int size = ino->size;
   unsigned int block_num = size == 0 ? 0 : ((size - 1)/BLOCK_SIZE + 1);
-  blockid_t* block_array = ino->blocks;
   debug_log("remove file inode: %d\tsize: %d\tblock size: %d\n", inum, size, block_num);
 
   for(unsigned int i = 0; i < block_num; i++){
     free_nth_block(ino, i);
   }
-  bm->free_block(ino->blocks[NDIRECT]);
+  if(block_num >= NDIRECT) bm->free_block(ino->blocks[NDIRECT]);
   //free inode
   free_inode(inum);
   free(ino);
