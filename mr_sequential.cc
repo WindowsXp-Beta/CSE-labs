@@ -8,14 +8,15 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <ctype.h>
 
 using namespace std;
 
-typedef struct {
+struct KeyVal{
     string key;
     string val;
-}
-KeyVal;
+    KeyVal(string key, string val):key(key), val(val){}
+};
 
 //
 // The map function is called once for each file of input. The first
@@ -28,7 +29,14 @@ vector<KeyVal> Map(const string &filename, const string &content)
 {
     // Your code goes here
     // Hints: split contents into an array of words.
-
+    vector<KeyVal> intermediate_file;
+    size_t size = content.size();
+    for(int i = 0; i < size; i++){
+        int start = i;
+        while(isalpha(content[i])) i++;
+        if(i > start)intermediate_file.emplace_back(content.substr(start, i - start), "1");
+    }
+    return intermediate_file;
 }
 
 //
@@ -40,7 +48,11 @@ string Reduce(const string &key, const vector <string> &values)
 {
     // Your code goes here
     // Hints: return the number of occurrences of the word.
-
+    unsigned int value = 0;
+    for(auto &p : values){
+        value += stoul(p);
+    }
+    return to_string(value);
 }
 
 int main(int argc, char ** argv)

@@ -10,6 +10,17 @@
 
 #include "mr_protocol.h"
 #include "rpc.h"
+#define DEBUG 0
+
+// flag = true means INFO
+// flag = false means ERROR
+#define debug_log(flag, ...) do{ \
+    if(DEBUG){ \
+      if(flag) printf("[INFO]File: %s line: %d: ", __FILE__, __LINE__); \
+      else printf("[ERROR]File: %s line: %d: ", __FILE__, __LINE__); \
+      printf(__VA_ARGS__); \
+      fflush(stdout); \
+    } }while(0);
 
 using namespace std;
 
@@ -48,13 +59,50 @@ private:
 
 mr_protocol::status Coordinator::askTask(int, mr_protocol::AskTaskResponse &reply) {
 	// Lab2 : Your code goes here.
-
+	reply.taskType = NONE;
+	if(!isFinishedMap()){//dispatch map task
+		this->mtx.lock();
+		for(auto &p : mapTasks){
+			if(p.isAssigned == false){
+				reply.taskType = MAP;
+				reply.index = p.index;
+				reply.filenames = files;
+				p.isAssigned = true;
+				break;
+			}
+		}
+		this->mtx.unlock();
+	} else if(!isFinishedReduce()){
+		this->mtx.lock();
+		for(auto &p : reduceTasks){
+			if(p.isAssigned == false){
+				reply.taskType = REDUCE;
+				reply.index = p.index;
+				p.isAssigned = true;
+				break;
+			}
+		}
+		this->mtx.unlock();
+	}
 	return mr_protocol::OK;
 }
 
 mr_protocol::status Coordinator::submitTask(int taskType, int index, bool &success) {
 	// Lab2 : Your code goes here.
-
+	switch(taskType){
+		case MAP:
+			mapTasks[index].isCompleted = true;
+			completedMapCount++;
+			break;
+		case REDUCE:
+			reduceTasks[index].isCompleted = true;
+			completedReduceCount++;
+			break;
+		default:
+			debug_log(false, "unsupported task type %d\n", taskType);
+			break;
+	}
+	success = true;
 	return mr_protocol::OK;
 }
 
@@ -149,7 +197,8 @@ int main(int argc, char *argv[])
 	// Lab2: Your code here.
 	// Hints: Register "askTask" and "submitTask" as RPC handlers here
 	// 
-
+	server.reg(mr_protocol::asktask, &c, &Coordinator::askTask);
+	server.reg(mr_protocol::submittask, &c, &Coordinator::submitTask);
 	while(!c.Done()) {
 		sleep(1);
 	}
