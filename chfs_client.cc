@@ -382,7 +382,7 @@ chfs_client::write(inum ino, size_t size, off_t off, const char *data,
         size_t &bytes_written)
 {
     int r = OK;
-    debug_log(true, "write file %lld\tsize is %ld\toffset is %ld\n", ino, size, off);
+    debug_log(true, "write file %lld\tsize is %ld\toffset is %ld\tdata is %s\n", ino, size, off, data);
     /*
      * your code goes here.
      * note: write using ec->put().

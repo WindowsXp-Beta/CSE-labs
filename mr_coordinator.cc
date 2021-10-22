@@ -10,7 +10,7 @@
 
 #include "mr_protocol.h"
 #include "rpc.h"
-#define DEBUG 0
+#define DEBUG 1
 
 // flag = true means INFO
 // flag = false means ERROR
@@ -91,16 +91,27 @@ mr_protocol::status Coordinator::submitTask(int taskType, int index, bool &succe
 	// Lab2 : Your code goes here.
 	switch(taskType){
 		case MAP:
+			this->mtx.lock();
 			mapTasks[index].isCompleted = true;
 			completedMapCount++;
+			this->mtx.unlock();
+			debug_log(true, "map task %d finished\n", index);
 			break;
 		case REDUCE:
+			this->mtx.lock();
 			reduceTasks[index].isCompleted = true;
 			completedReduceCount++;
+			this->mtx.unlock();
+			debug_log(true, "reduce task %d finished\n", index);
 			break;
 		default:
 			debug_log(false, "unsupported task type %d\n", taskType);
 			break;
+	}
+	if(isFinishedMap() && isFinishedReduce()) {
+		this->mtx.lock();
+		this->isFinished = true;
+		this->mtx.unlock();
 	}
 	success = true;
 	return mr_protocol::OK;
