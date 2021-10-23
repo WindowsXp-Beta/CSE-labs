@@ -6,7 +6,7 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <dirent.h>
-#include <algorithm>
+#include <ctime>
 
 
 #include <mutex>
@@ -16,8 +16,8 @@
 
 #include "rpc.h"
 #include "mr_protocol.h"
-#define DEBUG 1
-
+#define DEBUG 0
+#define TIMEx
 // flag = true means INFO
 // flag = false means ERROR
 #define debug_log(flag, ...) do{ \
@@ -114,6 +114,10 @@ Worker::Worker(const string &dst, const string &dir, MAPF mf, REDUCEF rf)
 void Worker::doMap(int index, const vector<string> &filenames)
 {
 	// Lab2: Your code goes here.
+#ifdef TIME
+	clock_t start_time, end_time;
+	start_time = std::clock();
+#endif
 	string filename = filenames[index];
 	string content;
 	debug_log(true, "read file %s\n", filename.data())
@@ -124,25 +128,42 @@ void Worker::doMap(int index, const vector<string> &filenames)
 	vector<string> intermediate_file_content(REDUCER_COUNT);
 
 	stringstream string_format;
-
-	for(auto &p : intermediate_content){
-		// intermediate_files[(p.key[0]%4)] << p.key << ' ' << p.val << endl;
-		intermediate_file_content[(p.key[0]%4)] += p.key + ' ' + p.val + '\n';
-		// intermediate_files[(p.key[0]%4)].write(p.key.c_str(), p.key.size());
-		// string space(" ");
-		// intermediate_files[(p.key[0]%4)].write(space.c_str(), 1);
-		// intermediate_files[(p.key[0]%4)].write(p.val.c_str(), p.val.size());
-		// string end_line("\n");
-		// intermediate_files[(p.key[0]%4)].write(end_line.c_str(), 1);
-	}
 	for(int i = 0; i < REDUCER_COUNT; i++){
-		string_format.str(string());//clear the content of stringstream
+		string_format.str(string());
 		string_format << this->basedir << "mr-" << index << "-" << i;
+		// debug_log(true, "begin write file %s\n", string_format.str().data());
 		intermediate_files[i].open(string_format.str());
-		debug_log(true, "intermediate file name is %s\n", string_format.str().data());
-		intermediate_files[i].write(intermediate_file_content[i].c_str(), intermediate_file_content[i].size());
-		intermediate_files[i].close();
 	}
+	for(auto &p : intermediate_content){
+		intermediate_files[(p.key[0]%4)] << p.key << ' ' << p.val << '\n';
+	}
+	for(auto &p : intermediate_files){
+		p.close();
+	}
+#ifdef TIME
+	end_time = std::clock();
+	debug_log(true, "map task %d time is %lu\n", index, end_time - start_time);
+#endif
+	//append a big string in memory and write it to the disk may cause too many realloc
+
+	// for(auto &p : intermediate_content){
+	// 	// intermediate_files[(p.key[0]%4)] << p.key << ' ' << p.val << endl;
+	// 	intermediate_file_content[(p.key[0]%4)] += p.key + ' ' + p.val + '\n';
+	// 	// intermediate_files[(p.key[0]%4)].write(p.key.c_str(), p.key.size());
+	// 	// string space(" ");
+	// 	// intermediate_files[(p.key[0]%4)].write(space.c_str(), 1);
+	// 	// intermediate_files[(p.key[0]%4)].write(p.val.c_str(), p.val.size());
+	// 	// string end_line("\n");
+	// 	// intermediate_files[(p.key[0]%4)].write(end_line.c_str(), 1);
+	// }
+	// for(int i = 0; i < REDUCER_COUNT; i++){
+	// 	string_format.str(string());//clear the content of stringstream
+	// 	string_format << this->basedir << "mr-" << index << "-" << i;
+	// 	intermediate_files[i].open(string_format.str());
+	// 	debug_log(true, "intermediate file name is %s\n", string_format.str().data());
+	// 	intermediate_files[i].write(intermediate_file_content[i].c_str(), intermediate_file_content[i].size());
+	// 	intermediate_files[i].close();
+	// }
 	// for(auto &p : intermediate_files){
 	// 	p.close();
 	// }
@@ -151,6 +172,10 @@ void Worker::doMap(int index, const vector<string> &filenames)
 void Worker::doReduce(int index)
 {
 	// Lab2: Your code goes here.
+#ifdef TIME
+	clock_t start_time, end_time;
+	start_time = std::clock();
+#endif
 	vector<string> files_end_in_index;
 	string index_str = to_string(index);
 	debug_log(true, "index_str is %s\n", index_str.data());
@@ -160,7 +185,7 @@ void Worker::doReduce(int index)
     dir = opendir(basedir.c_str());
 	while((rent = readdir(dir))){
 		string filename(rent->d_name);
-		// debug_log(true, "filename is %s\n", filename.data());
+		debug_log(true, "filename is %s\n", filename.data());
 		size_t pos = filename.rfind(index_str);
 		if(pos != -1 && (pos == filename.size() - index_str.size()) && filename[pos - 1] == '-'){
 			debug_log(true, "filename found is %s\n", filename.data())
@@ -178,19 +203,23 @@ void Worker::doReduce(int index)
 			intermediate_content[key].push_back(val);
 		}
 	}
-	string content;
-	for(auto &p : intermediate_content){
-		string result = reducef(p.first, p.second);
-		content += p.first + " " + result + '\n';
-		// mr_out_file << p.first << ' ' << result << endl;//use stream is too slow!!!
-	}
 	// stringstream string_format;
 	// string_format << basedir << "mr-out" << index;
 	// ofstream mr_out_file(string_format.str());
 	string out_filename = basedir + "mr-out" + to_string(index);
 	ofstream mr_out_file(out_filename);
-	mr_out_file.write(content.data(), content.size());
+	string content;
+	for(auto &p : intermediate_content){
+		string result = reducef(p.first, p.second);
+		// content += p.first + " " + result + '\n';
+		mr_out_file << p.first << ' ' << result << '\n';
+	}
+	// mr_out_file.write(content.data(), content.size());
 	mr_out_file.close();
+#ifdef TIME
+	end_time = std::clock();
+	debug_log(true, "reduce task %d time is %lu\n", index, end_time - start_time);
+#endif
 }
 
 void Worker::doSubmit(mr_tasktype taskType, int index)

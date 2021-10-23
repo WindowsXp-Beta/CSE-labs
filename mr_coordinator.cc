@@ -10,7 +10,7 @@
 
 #include "mr_protocol.h"
 #include "rpc.h"
-#define DEBUG 1
+#define DEBUG 0
 
 // flag = true means INFO
 // flag = false means ERROR
