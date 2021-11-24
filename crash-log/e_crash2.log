@@ -1,0 +1,3529 @@
+FUSE library version: 2.9.9
+unique: 2, opcode: INIT (26), nodeid: 0, insize: 56, pid: 0
+INIT: 7.32
+flags=0x03fffffb
+max_readahead=0x00020000
+   INIT: 7.19
+   flags=0x00000000
+   max_readahead=0x00020000
+   max_write=0x00020000
+   max_background=0
+   congestion_threshold=0
+   unique: 2, success, outsize: 40
+unique: 4, opcode: LOOKUP (1), nodeid: 1, insize: 48, pid: 83807
+[INFO]File: chfs_client.cc line: 293: look for file foo.txt in parent 1
+extent_server: get 1
+	im: get_inode 1
+read an empty file
+extent_server: getattr 1
+	im: get_inode 1
+isdir: 1 is a dir
+   unique: 4, error: -2 (No such file or directory), outsize: 16
+unique: 6, opcode: CREATE (35), nodeid: 1, insize: 64, pid: 83807
+[INFO]File: chfs_client.cc line: 196: create file foo.txt in 1
+extent_server: get 1
+	im: get_inode 1
+read an empty file
+[INFO]File: chfs_client.cc line: 293: look for file foo.txt in parent 1
+extent_server: get 1
+	im: get_inode 1
+read an empty file
+extent_server: getattr 1
+	im: get_inode 1
+isdir: 1 is a dir
+extent_server: create inode
+[INFO]File: chfs_client.cc line: 224: new dirent.name is foo.txt	dirent.num is 2	im: get_inode 1
+	im: put_inode 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 0
+   getattr -> 0
+   unique: 6, success, outsize: 160
+OK: create returns.
+unique: 8, opcode: FLUSH (25), nodeid: 2, insize: 64, pid: 83807
+   unique: 8, error: -38 (Function not implemented), outsize: 16
+unique: 10, opcode: GETXATTR (22), nodeid: 2, insize: 68, pid: 83807
+   unique: 10, error: -38 (Function not implemented), outsize: 16
+unique: 12, opcode: SETATTR (4), nodeid: 2, insize: 128, pid: 83807
+fuseserver_setattr 0x8
+   fuseserver_setattr set size to 3072
+extent_server: get 2
+	im: get_inode 2
+read an empty file
+	im: get_inode 2
+	im: put_inode 2
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 3072
+   getattr -> 3072
+   unique: 12, success, outsize: 120
+unique: 14, opcode: IOCTL (39), nodeid: 2, insize: 72, pid: 83807
+   unique: 14, error: -38 (Function not implemented), outsize: 16
+unique: 16, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83807
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 3072
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 4096
+	im: get_inode 2
+	im: put_inode 2
+   unique: 16, success, outsize: 24
+unique: 18, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83807
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 4096
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 5120
+	im: get_inode 2
+	im: put_inode 2
+   unique: 18, success, outsize: 24
+unique: 20, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83807
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 5120
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 6144
+	im: get_inode 2
+	im: put_inode 2
+   unique: 20, success, outsize: 24
+unique: 22, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83807
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 6144
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 7168
+	im: get_inode 2
+	im: put_inode 2
+   unique: 22, success, outsize: 24
+unique: 24, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83807
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 7168
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 8192
+	im: get_inode 2
+	im: put_inode 2
+   unique: 24, success, outsize: 24
+unique: 26, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83807
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 8192
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 9216
+	im: get_inode 2
+	im: put_inode 2
+   unique: 26, success, outsize: 24
+unique: 28, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83807
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 9216
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 10240
+	im: get_inode 2
+	im: put_inode 2
+   unique: 28, success, outsize: 24
+unique: 30, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83807
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 10240
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 11264
+	im: get_inode 2
+	im: put_inode 2
+   unique: 30, success, outsize: 24
+unique: 32, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83807
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 11264
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 12288
+	im: get_inode 2
+	im: put_inode 2
+   unique: 32, success, outsize: 24
+unique: 34, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83807
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 12288
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 13312
+	im: get_inode 2
+	im: put_inode 2
+   unique: 34, success, outsize: 24
+unique: 36, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83807
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 13312
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 14336
+	im: get_inode 2
+	im: put_inode 2
+   unique: 36, success, outsize: 24
+unique: 38, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83807
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 14336
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 15360
+	im: get_inode 2
+	im: put_inode 2
+   unique: 38, success, outsize: 24
+unique: 40, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83807
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 15360
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 16384
+	im: get_inode 2
+	im: put_inode 2
+   unique: 40, success, outsize: 24
+unique: 42, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83807
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 16384
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 17408
+	im: get_inode 2
+	im: put_inode 2
+   unique: 42, success, outsize: 24
+unique: 44, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83807
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 17408
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 18432
+	im: get_inode 2
+	im: put_inode 2
+   unique: 44, success, outsize: 24
+unique: 46, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83807
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 18432
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 19456
+	im: get_inode 2
+	im: put_inode 2
+   unique: 46, success, outsize: 24
+unique: 48, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83807
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 19456
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 20480
+	im: get_inode 2
+	im: put_inode 2
+   unique: 48, success, outsize: 24
+unique: 50, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83807
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 20480
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 21504
+	im: get_inode 2
+	im: put_inode 2
+   unique: 50, success, outsize: 24
+unique: 52, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83807
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 21504
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 22528
+	im: get_inode 2
+	im: put_inode 2
+   unique: 52, success, outsize: 24
+unique: 54, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83807
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 22528
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 23552
+	im: get_inode 2
+	im: put_inode 2
+   unique: 54, success, outsize: 24
+unique: 56, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83807
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 23552
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 24576
+	im: get_inode 2
+	im: put_inode 2
+   unique: 56, success, outsize: 24
+unique: 58, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83807
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 24576
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 25600
+	im: get_inode 2
+	im: put_inode 2
+   unique: 58, success, outsize: 24
+unique: 60, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83807
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 25600
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 26624
+	im: get_inode 2
+	im: put_inode 2
+   unique: 60, success, outsize: 24
+unique: 62, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83807
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 26624
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 27648
+	im: get_inode 2
+	im: put_inode 2
+   unique: 62, success, outsize: 24
+unique: 64, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83807
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 27648
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 28672
+	im: get_inode 2
+	im: put_inode 2
+   unique: 64, success, outsize: 24
+unique: 66, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83807
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 28672
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 29696
+	im: get_inode 2
+	im: put_inode 2
+   unique: 66, success, outsize: 24
+unique: 68, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83807
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 29696
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 30720
+	im: get_inode 2
+	im: put_inode 2
+   unique: 68, success, outsize: 24
+unique: 70, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83807
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 30720
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 31744
+	im: get_inode 2
+	im: put_inode 2
+   unique: 70, success, outsize: 24
+unique: 72, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83807
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 31744
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 32768
+	im: get_inode 2
+	im: put_inode 2
+   unique: 72, success, outsize: 24
+unique: 74, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83807
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 32768
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 33792
+	im: get_inode 2
+	im: put_inode 2
+   unique: 74, success, outsize: 24
+unique: 76, opcode: RELEASE (18), nodeid: 2, insize: 64, pid: 0
+   unique: 76, success, outsize: 16
+unique: 78, opcode: LOOKUP (1), nodeid: 1, insize: 48, pid: 83836
+[INFO]File: chfs_client.cc line: 293: look for file foo.txt in parent 1
+extent_server: get 1
+	im: get_inode 1
+extent_server: getattr 1
+	im: get_inode 1
+isdir: 1 is a dir
+[INFO]File: chfs_client.cc line: 316: dirent.name is foo.txt	dirent.inum is 2
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 78, success, outsize: 144
+unique: 80, opcode: GETATTR (3), nodeid: 2, insize: 56, pid: 83836
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 80, success, outsize: 120
+unique: 82, opcode: LOOKUP (1), nodeid: 1, insize: 48, pid: 83836
+[INFO]File: chfs_client.cc line: 293: look for file foo.txt in parent 1
+extent_server: get 1
+	im: get_inode 1
+extent_server: getattr 1
+	im: get_inode 1
+isdir: 1 is a dir
+[INFO]File: chfs_client.cc line: 316: dirent.name is foo.txt	dirent.inum is 2
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 82, success, outsize: 144
+unique: 84, opcode: OPEN (14), nodeid: 2, insize: 48, pid: 83836
+   unique: 84, success, outsize: 32
+unique: 86, opcode: READ (15), nodeid: 2, insize: 80, pid: 83836
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 377: read file 2	size is 16384	offset is 0	file size is 33792
+   unique: 86, success, outsize: 16400
+unique: 88, opcode: READ (15), nodeid: 2, insize: 80, pid: 83836
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 377: read file 2	size is 20480	offset is 16384	file size is 33792
+   unique: 88, success, outsize: 17424
+unique: 90, opcode: GETATTR (3), nodeid: 2, insize: 56, pid: 83836
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 90, success, outsize: 120
+unique: 92, opcode: GETATTR (3), nodeid: 2, insize: 56, pid: 83836
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 92, success, outsize: 120
+unique: 94, opcode: RELEASE (18), nodeid: 2, insize: 64, pid: 0
+   unique: 94, success, outsize: 16
+unique: 96, opcode: LOOKUP (1), nodeid: 1, insize: 48, pid: 83837
+[INFO]File: chfs_client.cc line: 293: look for file foo.txt in parent 1
+extent_server: get 1
+	im: get_inode 1
+extent_server: getattr 1
+	im: get_inode 1
+isdir: 1 is a dir
+[INFO]File: chfs_client.cc line: 316: dirent.name is foo.txt	dirent.inum is 2
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 96, success, outsize: 144
+unique: 98, opcode: GETATTR (3), nodeid: 2, insize: 56, pid: 83837
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 98, success, outsize: 120
+unique: 100, opcode: LOOKUP (1), nodeid: 1, insize: 48, pid: 83837
+[INFO]File: chfs_client.cc line: 293: look for file foo.txt in parent 1
+extent_server: get 1
+	im: get_inode 1
+extent_server: getattr 1
+	im: get_inode 1
+isdir: 1 is a dir
+[INFO]File: chfs_client.cc line: 316: dirent.name is foo.txt	dirent.inum is 2
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 100, success, outsize: 144
+unique: 102, opcode: UNLINK (10), nodeid: 1, insize: 48, pid: 83837
+extent_server: get 1
+	im: get_inode 1
+extent_server: write 2
+	im: get_inode 2
+	im: get_inode 1
+	im: put_inode 1
+   unique: 102, success, outsize: 16
+unique: 104, opcode: FORGET (2), nodeid: 2, insize: 48, pid: 0
+unique: 106, opcode: LOOKUP (1), nodeid: 1, insize: 48, pid: 83941
+[INFO]File: chfs_client.cc line: 293: look for file foo.txt in parent 1
+extent_server: get 1
+	im: get_inode 1
+read an empty file
+extent_server: getattr 1
+	im: get_inode 1
+isdir: 1 is a dir
+   unique: 106, error: -2 (No such file or directory), outsize: 16
+unique: 108, opcode: CREATE (35), nodeid: 1, insize: 64, pid: 83941
+[INFO]File: chfs_client.cc line: 196: create file foo.txt in 1
+extent_server: get 1
+	im: get_inode 1
+read an empty file
+[INFO]File: chfs_client.cc line: 293: look for file foo.txt in parent 1
+extent_server: get 1
+	im: get_inode 1
+read an empty file
+extent_server: getattr 1
+	im: get_inode 1
+isdir: 1 is a dir
+extent_server: create inode
+[INFO]File: chfs_client.cc line: 224: new dirent.name is foo.txt	dirent.num is 2	im: get_inode 1
+	im: put_inode 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 0
+   getattr -> 0
+   unique: 108, success, outsize: 160
+OK: create returns.
+unique: 110, opcode: SETATTR (4), nodeid: 2, insize: 128, pid: 83941
+fuseserver_setattr 0x8
+   fuseserver_setattr set size to 3072
+extent_server: get 2
+	im: get_inode 2
+read an empty file
+	im: get_inode 2
+	im: put_inode 2
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 3072
+   getattr -> 3072
+   unique: 110, success, outsize: 120
+unique: 112, opcode: IOCTL (39), nodeid: 2, insize: 72, pid: 83941
+   unique: 112, error: -38 (Function not implemented), outsize: 16
+unique: 114, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83941
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 3072
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 4096
+	im: get_inode 2
+	im: put_inode 2
+   unique: 114, success, outsize: 24
+unique: 116, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83941
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 4096
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 5120
+	im: get_inode 2
+	im: put_inode 2
+   unique: 116, success, outsize: 24
+unique: 118, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83941
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 5120
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 6144
+	im: get_inode 2
+	im: put_inode 2
+   unique: 118, success, outsize: 24
+unique: 120, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83941
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 6144
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 7168
+	im: get_inode 2
+	im: put_inode 2
+   unique: 120, success, outsize: 24
+unique: 122, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83941
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 7168
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 8192
+	im: get_inode 2
+	im: put_inode 2
+   unique: 122, success, outsize: 24
+unique: 124, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83941
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 8192
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 9216
+	im: get_inode 2
+	im: put_inode 2
+   unique: 124, success, outsize: 24
+unique: 126, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83941
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 9216
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 10240
+	im: get_inode 2
+	im: put_inode 2
+   unique: 126, success, outsize: 24
+unique: 128, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83941
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 10240
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 11264
+	im: get_inode 2
+	im: put_inode 2
+   unique: 128, success, outsize: 24
+unique: 130, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83941
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 11264
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 12288
+	im: get_inode 2
+	im: put_inode 2
+   unique: 130, success, outsize: 24
+unique: 132, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83941
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 12288
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 13312
+	im: get_inode 2
+	im: put_inode 2
+   unique: 132, success, outsize: 24
+unique: 134, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83941
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 13312
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 14336
+	im: get_inode 2
+	im: put_inode 2
+   unique: 134, success, outsize: 24
+unique: 136, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83941
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 14336
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 15360
+	im: get_inode 2
+	im: put_inode 2
+   unique: 136, success, outsize: 24
+unique: 138, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83941
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 15360
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 16384
+	im: get_inode 2
+	im: put_inode 2
+   unique: 138, success, outsize: 24
+unique: 140, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83941
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 16384
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 17408
+	im: get_inode 2
+	im: put_inode 2
+   unique: 140, success, outsize: 24
+unique: 142, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83941
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 17408
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 18432
+	im: get_inode 2
+	im: put_inode 2
+   unique: 142, success, outsize: 24
+unique: 144, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83941
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 18432
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 19456
+	im: get_inode 2
+	im: put_inode 2
+   unique: 144, success, outsize: 24
+unique: 146, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83941
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 19456
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 20480
+	im: get_inode 2
+	im: put_inode 2
+   unique: 146, success, outsize: 24
+unique: 148, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83941
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 20480
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 21504
+	im: get_inode 2
+	im: put_inode 2
+   unique: 148, success, outsize: 24
+unique: 150, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83941
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 21504
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 22528
+	im: get_inode 2
+	im: put_inode 2
+   unique: 150, success, outsize: 24
+unique: 152, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83941
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 22528
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 23552
+	im: get_inode 2
+	im: put_inode 2
+   unique: 152, success, outsize: 24
+unique: 154, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83941
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 23552
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 24576
+	im: get_inode 2
+	im: put_inode 2
+   unique: 154, success, outsize: 24
+unique: 156, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83941
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 24576
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 25600
+	im: get_inode 2
+	im: put_inode 2
+   unique: 156, success, outsize: 24
+unique: 158, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83941
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 25600
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 26624
+	im: get_inode 2
+	im: put_inode 2
+   unique: 158, success, outsize: 24
+unique: 160, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83941
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 26624
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 27648
+	im: get_inode 2
+	im: put_inode 2
+   unique: 160, success, outsize: 24
+unique: 162, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83941
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 27648
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 28672
+	im: get_inode 2
+	im: put_inode 2
+   unique: 162, success, outsize: 24
+unique: 164, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83941
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 28672
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 29696
+	im: get_inode 2
+	im: put_inode 2
+   unique: 164, success, outsize: 24
+unique: 166, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83941
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 29696
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 30720
+	im: get_inode 2
+	im: put_inode 2
+   unique: 166, success, outsize: 24
+unique: 168, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83941
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 30720
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 31744
+	im: get_inode 2
+	im: put_inode 2
+   unique: 168, success, outsize: 24
+unique: 170, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83941
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 31744
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 32768
+	im: get_inode 2
+	im: put_inode 2
+   unique: 170, success, outsize: 24
+unique: 172, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 83941
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 32768
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 33792
+	im: get_inode 2
+	im: put_inode 2
+   unique: 172, success, outsize: 24
+unique: 174, opcode: RELEASE (18), nodeid: 2, insize: 64, pid: 0
+   unique: 174, success, outsize: 16
+unique: 176, opcode: LOOKUP (1), nodeid: 1, insize: 48, pid: 83946
+[INFO]File: chfs_client.cc line: 293: look for file foo.txt in parent 1
+extent_server: get 1
+	im: get_inode 1
+extent_server: getattr 1
+	im: get_inode 1
+isdir: 1 is a dir
+[INFO]File: chfs_client.cc line: 316: dirent.name is foo.txt	dirent.inum is 2
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 176, success, outsize: 144
+unique: 178, opcode: GETATTR (3), nodeid: 2, insize: 56, pid: 83946
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 178, success, outsize: 120
+unique: 180, opcode: LOOKUP (1), nodeid: 1, insize: 48, pid: 83946
+[INFO]File: chfs_client.cc line: 293: look for file foo.txt in parent 1
+extent_server: get 1
+	im: get_inode 1
+extent_server: getattr 1
+	im: get_inode 1
+isdir: 1 is a dir
+[INFO]File: chfs_client.cc line: 316: dirent.name is foo.txt	dirent.inum is 2
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 180, success, outsize: 144
+unique: 182, opcode: OPEN (14), nodeid: 2, insize: 48, pid: 83946
+   unique: 182, success, outsize: 32
+unique: 184, opcode: READ (15), nodeid: 2, insize: 80, pid: 83946
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 377: read file 2	size is 16384	offset is 0	file size is 33792
+   unique: 184, success, outsize: 16400
+unique: 186, opcode: READ (15), nodeid: 2, insize: 80, pid: 83946
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 377: read file 2	size is 20480	offset is 16384	file size is 33792
+   unique: 186, success, outsize: 17424
+unique: 188, opcode: GETATTR (3), nodeid: 2, insize: 56, pid: 83946
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 188, success, outsize: 120
+unique: 190, opcode: GETATTR (3), nodeid: 2, insize: 56, pid: 83946
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 190, success, outsize: 120
+unique: 192, opcode: RELEASE (18), nodeid: 2, insize: 64, pid: 0
+   unique: 192, success, outsize: 16
+unique: 194, opcode: LOOKUP (1), nodeid: 1, insize: 48, pid: 83947
+[INFO]File: chfs_client.cc line: 293: look for file foo.txt in parent 1
+extent_server: get 1
+	im: get_inode 1
+extent_server: getattr 1
+	im: get_inode 1
+isdir: 1 is a dir
+[INFO]File: chfs_client.cc line: 316: dirent.name is foo.txt	dirent.inum is 2
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 194, success, outsize: 144
+unique: 196, opcode: GETATTR (3), nodeid: 2, insize: 56, pid: 83947
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 196, success, outsize: 120
+unique: 198, opcode: LOOKUP (1), nodeid: 1, insize: 48, pid: 83947
+[INFO]File: chfs_client.cc line: 293: look for file foo.txt in parent 1
+extent_server: get 1
+	im: get_inode 1
+extent_server: getattr 1
+	im: get_inode 1
+isdir: 1 is a dir
+[INFO]File: chfs_client.cc line: 316: dirent.name is foo.txt	dirent.inum is 2
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 198, success, outsize: 144
+unique: 200, opcode: UNLINK (10), nodeid: 1, insize: 48, pid: 83947
+extent_server: get 1
+	im: get_inode 1
+extent_server: write 2
+	im: get_inode 2
+	im: get_inode 1
+	im: put_inode 1
+   unique: 200, success, outsize: 16
+unique: 202, opcode: FORGET (2), nodeid: 2, insize: 48, pid: 0
+unique: 204, opcode: LOOKUP (1), nodeid: 1, insize: 48, pid: 84012
+[INFO]File: chfs_client.cc line: 293: look for file foo.txt in parent 1
+extent_server: get 1
+	im: get_inode 1
+read an empty file
+extent_server: getattr 1
+	im: get_inode 1
+isdir: 1 is a dir
+   unique: 204, error: -2 (No such file or directory), outsize: 16
+unique: 206, opcode: CREATE (35), nodeid: 1, insize: 64, pid: 84012
+[INFO]File: chfs_client.cc line: 196: create file foo.txt in 1
+extent_server: get 1
+	im: get_inode 1
+read an empty file
+[INFO]File: chfs_client.cc line: 293: look for file foo.txt in parent 1
+extent_server: get 1
+	im: get_inode 1
+read an empty file
+extent_server: getattr 1
+	im: get_inode 1
+isdir: 1 is a dir
+extent_server: create inode
+[INFO]File: chfs_client.cc line: 224: new dirent.name is foo.txt	dirent.num is 2	im: get_inode 1
+	im: put_inode 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 0
+   getattr -> 0
+   unique: 206, success, outsize: 160
+OK: create returns.
+unique: 208, opcode: SETATTR (4), nodeid: 2, insize: 128, pid: 84012
+fuseserver_setattr 0x8
+   fuseserver_setattr set size to 3072
+extent_server: get 2
+	im: get_inode 2
+read an empty file
+	im: get_inode 2
+	im: put_inode 2
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 3072
+   getattr -> 3072
+   unique: 208, success, outsize: 120
+unique: 210, opcode: IOCTL (39), nodeid: 2, insize: 72, pid: 84012
+   unique: 210, error: -38 (Function not implemented), outsize: 16
+unique: 212, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84012
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 3072
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 4096
+	im: get_inode 2
+	im: put_inode 2
+   unique: 212, success, outsize: 24
+unique: 214, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84012
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 4096
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 5120
+	im: get_inode 2
+	im: put_inode 2
+   unique: 214, success, outsize: 24
+unique: 216, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84012
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 5120
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 6144
+	im: get_inode 2
+	im: put_inode 2
+   unique: 216, success, outsize: 24
+unique: 218, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84012
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 6144
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 7168
+	im: get_inode 2
+	im: put_inode 2
+   unique: 218, success, outsize: 24
+unique: 220, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84012
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 7168
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 8192
+	im: get_inode 2
+	im: put_inode 2
+   unique: 220, success, outsize: 24
+unique: 222, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84012
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 8192
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 9216
+	im: get_inode 2
+	im: put_inode 2
+   unique: 222, success, outsize: 24
+unique: 224, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84012
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 9216
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 10240
+	im: get_inode 2
+	im: put_inode 2
+   unique: 224, success, outsize: 24
+unique: 226, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84012
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 10240
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 11264
+	im: get_inode 2
+	im: put_inode 2
+   unique: 226, success, outsize: 24
+unique: 228, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84012
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 11264
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 12288
+	im: get_inode 2
+	im: put_inode 2
+   unique: 228, success, outsize: 24
+unique: 230, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84012
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 12288
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 13312
+	im: get_inode 2
+	im: put_inode 2
+   unique: 230, success, outsize: 24
+unique: 232, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84012
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 13312
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 14336
+	im: get_inode 2
+	im: put_inode 2
+   unique: 232, success, outsize: 24
+unique: 234, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84012
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 14336
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 15360
+	im: get_inode 2
+	im: put_inode 2
+   unique: 234, success, outsize: 24
+unique: 236, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84012
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 15360
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 16384
+	im: get_inode 2
+	im: put_inode 2
+   unique: 236, success, outsize: 24
+unique: 238, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84012
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 16384
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 17408
+	im: get_inode 2
+	im: put_inode 2
+   unique: 238, success, outsize: 24
+unique: 240, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84012
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 17408
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 18432
+	im: get_inode 2
+	im: put_inode 2
+   unique: 240, success, outsize: 24
+unique: 242, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84012
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 18432
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 19456
+	im: get_inode 2
+	im: put_inode 2
+   unique: 242, success, outsize: 24
+unique: 244, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84012
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 19456
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 20480
+	im: get_inode 2
+	im: put_inode 2
+   unique: 244, success, outsize: 24
+unique: 246, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84012
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 20480
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 21504
+	im: get_inode 2
+	im: put_inode 2
+   unique: 246, success, outsize: 24
+unique: 248, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84012
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 21504
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 22528
+	im: get_inode 2
+	im: put_inode 2
+   unique: 248, success, outsize: 24
+unique: 250, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84012
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 22528
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 23552
+	im: get_inode 2
+	im: put_inode 2
+   unique: 250, success, outsize: 24
+unique: 252, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84012
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 23552
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 24576
+	im: get_inode 2
+	im: put_inode 2
+   unique: 252, success, outsize: 24
+unique: 254, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84012
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 24576
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 25600
+	im: get_inode 2
+	im: put_inode 2
+   unique: 254, success, outsize: 24
+unique: 256, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84012
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 25600
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 26624
+	im: get_inode 2
+	im: put_inode 2
+   unique: 256, success, outsize: 24
+unique: 258, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84012
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 26624
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 27648
+	im: get_inode 2
+	im: put_inode 2
+   unique: 258, success, outsize: 24
+unique: 260, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84012
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 27648
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 28672
+	im: get_inode 2
+	im: put_inode 2
+   unique: 260, success, outsize: 24
+unique: 262, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84012
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 28672
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 29696
+	im: get_inode 2
+	im: put_inode 2
+   unique: 262, success, outsize: 24
+unique: 264, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84012
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 29696
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 30720
+	im: get_inode 2
+	im: put_inode 2
+   unique: 264, success, outsize: 24
+unique: 266, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84012
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 30720
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 31744
+	im: get_inode 2
+	im: put_inode 2
+   unique: 266, success, outsize: 24
+unique: 268, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84012
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 31744
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 32768
+	im: get_inode 2
+	im: put_inode 2
+   unique: 268, success, outsize: 24
+unique: 270, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84012
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 32768
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 33792
+	im: get_inode 2
+	im: put_inode 2
+   unique: 270, success, outsize: 24
+unique: 272, opcode: RELEASE (18), nodeid: 2, insize: 64, pid: 0
+   unique: 272, success, outsize: 16
+unique: 274, opcode: LOOKUP (1), nodeid: 1, insize: 48, pid: 84030
+[INFO]File: chfs_client.cc line: 293: look for file foo.txt in parent 1
+extent_server: get 1
+	im: get_inode 1
+extent_server: getattr 1
+	im: get_inode 1
+isdir: 1 is a dir
+[INFO]File: chfs_client.cc line: 316: dirent.name is foo.txt	dirent.inum is 2
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 274, success, outsize: 144
+unique: 276, opcode: GETATTR (3), nodeid: 2, insize: 56, pid: 84030
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 276, success, outsize: 120
+unique: 278, opcode: LOOKUP (1), nodeid: 1, insize: 48, pid: 84030
+[INFO]File: chfs_client.cc line: 293: look for file foo.txt in parent 1
+extent_server: get 1
+	im: get_inode 1
+extent_server: getattr 1
+	im: get_inode 1
+isdir: 1 is a dir
+[INFO]File: chfs_client.cc line: 316: dirent.name is foo.txt	dirent.inum is 2
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 278, success, outsize: 144
+unique: 280, opcode: OPEN (14), nodeid: 2, insize: 48, pid: 84030
+   unique: 280, success, outsize: 32
+unique: 282, opcode: READ (15), nodeid: 2, insize: 80, pid: 84030
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 377: read file 2	size is 16384	offset is 0	file size is 33792
+   unique: 282, success, outsize: 16400
+unique: 284, opcode: READ (15), nodeid: 2, insize: 80, pid: 84030
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 377: read file 2	size is 20480	offset is 16384	file size is 33792
+   unique: 284, success, outsize: 17424
+unique: 286, opcode: GETATTR (3), nodeid: 2, insize: 56, pid: 84030
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 286, success, outsize: 120
+unique: 288, opcode: GETATTR (3), nodeid: 2, insize: 56, pid: 84030
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 288, success, outsize: 120
+unique: 290, opcode: RELEASE (18), nodeid: 2, insize: 64, pid: 0
+   unique: 290, success, outsize: 16
+unique: 292, opcode: LOOKUP (1), nodeid: 1, insize: 48, pid: 84034
+[INFO]File: chfs_client.cc line: 293: look for file foo.txt in parent 1
+extent_server: get 1
+	im: get_inode 1
+extent_server: getattr 1
+	im: get_inode 1
+isdir: 1 is a dir
+[INFO]File: chfs_client.cc line: 316: dirent.name is foo.txt	dirent.inum is 2
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 292, success, outsize: 144
+unique: 294, opcode: GETATTR (3), nodeid: 2, insize: 56, pid: 84034
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 294, success, outsize: 120
+unique: 296, opcode: LOOKUP (1), nodeid: 1, insize: 48, pid: 84034
+[INFO]File: chfs_client.cc line: 293: look for file foo.txt in parent 1
+extent_server: get 1
+	im: get_inode 1
+extent_server: getattr 1
+	im: get_inode 1
+isdir: 1 is a dir
+[INFO]File: chfs_client.cc line: 316: dirent.name is foo.txt	dirent.inum is 2
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 296, success, outsize: 144
+unique: 298, opcode: UNLINK (10), nodeid: 1, insize: 48, pid: 84034
+extent_server: get 1
+	im: get_inode 1
+extent_server: write 2
+	im: get_inode 2
+	im: get_inode 1
+	im: put_inode 1
+   unique: 298, success, outsize: 16
+unique: 300, opcode: FORGET (2), nodeid: 2, insize: 48, pid: 0
+unique: 302, opcode: LOOKUP (1), nodeid: 1, insize: 48, pid: 84069
+[INFO]File: chfs_client.cc line: 293: look for file foo.txt in parent 1
+extent_server: get 1
+	im: get_inode 1
+read an empty file
+extent_server: getattr 1
+	im: get_inode 1
+isdir: 1 is a dir
+   unique: 302, error: -2 (No such file or directory), outsize: 16
+unique: 304, opcode: CREATE (35), nodeid: 1, insize: 64, pid: 84069
+[INFO]File: chfs_client.cc line: 196: create file foo.txt in 1
+extent_server: get 1
+	im: get_inode 1
+read an empty file
+[INFO]File: chfs_client.cc line: 293: look for file foo.txt in parent 1
+extent_server: get 1
+	im: get_inode 1
+read an empty file
+extent_server: getattr 1
+	im: get_inode 1
+isdir: 1 is a dir
+extent_server: create inode
+[INFO]File: chfs_client.cc line: 224: new dirent.name is foo.txt	dirent.num is 2	im: get_inode 1
+	im: put_inode 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 0
+   getattr -> 0
+   unique: 304, success, outsize: 160
+OK: create returns.
+unique: 306, opcode: SETATTR (4), nodeid: 2, insize: 128, pid: 84069
+fuseserver_setattr 0x8
+   fuseserver_setattr set size to 3072
+extent_server: get 2
+	im: get_inode 2
+read an empty file
+	im: get_inode 2
+	im: put_inode 2
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 3072
+   getattr -> 3072
+   unique: 306, success, outsize: 120
+unique: 308, opcode: IOCTL (39), nodeid: 2, insize: 72, pid: 84069
+   unique: 308, error: -38 (Function not implemented), outsize: 16
+unique: 310, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84069
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 3072
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 4096
+	im: get_inode 2
+	im: put_inode 2
+   unique: 310, success, outsize: 24
+unique: 312, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84069
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 4096
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 5120
+	im: get_inode 2
+	im: put_inode 2
+   unique: 312, success, outsize: 24
+unique: 314, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84069
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 5120
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 6144
+	im: get_inode 2
+	im: put_inode 2
+   unique: 314, success, outsize: 24
+unique: 316, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84069
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 6144
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 7168
+	im: get_inode 2
+	im: put_inode 2
+   unique: 316, success, outsize: 24
+unique: 318, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84069
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 7168
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 8192
+	im: get_inode 2
+	im: put_inode 2
+   unique: 318, success, outsize: 24
+unique: 320, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84069
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 8192
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 9216
+	im: get_inode 2
+	im: put_inode 2
+   unique: 320, success, outsize: 24
+unique: 322, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84069
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 9216
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 10240
+	im: get_inode 2
+	im: put_inode 2
+   unique: 322, success, outsize: 24
+unique: 324, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84069
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 10240
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 11264
+	im: get_inode 2
+	im: put_inode 2
+   unique: 324, success, outsize: 24
+unique: 326, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84069
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 11264
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 12288
+	im: get_inode 2
+	im: put_inode 2
+   unique: 326, success, outsize: 24
+unique: 328, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84069
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 12288
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 13312
+	im: get_inode 2
+	im: put_inode 2
+   unique: 328, success, outsize: 24
+unique: 330, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84069
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 13312
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 14336
+	im: get_inode 2
+	im: put_inode 2
+   unique: 330, success, outsize: 24
+unique: 332, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84069
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 14336
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 15360
+	im: get_inode 2
+	im: put_inode 2
+   unique: 332, success, outsize: 24
+unique: 334, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84069
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 15360
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 16384
+	im: get_inode 2
+	im: put_inode 2
+   unique: 334, success, outsize: 24
+unique: 336, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84069
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 16384
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 17408
+	im: get_inode 2
+	im: put_inode 2
+   unique: 336, success, outsize: 24
+unique: 338, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84069
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 17408
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 18432
+	im: get_inode 2
+	im: put_inode 2
+   unique: 338, success, outsize: 24
+unique: 340, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84069
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 18432
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 19456
+	im: get_inode 2
+	im: put_inode 2
+   unique: 340, success, outsize: 24
+unique: 342, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84069
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 19456
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 20480
+	im: get_inode 2
+	im: put_inode 2
+   unique: 342, success, outsize: 24
+unique: 344, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84069
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 20480
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 21504
+	im: get_inode 2
+	im: put_inode 2
+   unique: 344, success, outsize: 24
+unique: 346, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84069
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 21504
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 22528
+	im: get_inode 2
+	im: put_inode 2
+   unique: 346, success, outsize: 24
+unique: 348, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84069
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 22528
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 23552
+	im: get_inode 2
+	im: put_inode 2
+   unique: 348, success, outsize: 24
+unique: 350, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84069
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 23552
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 24576
+	im: get_inode 2
+	im: put_inode 2
+   unique: 350, success, outsize: 24
+unique: 352, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84069
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 24576
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 25600
+	im: get_inode 2
+	im: put_inode 2
+   unique: 352, success, outsize: 24
+unique: 354, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84069
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 25600
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 26624
+	im: get_inode 2
+	im: put_inode 2
+   unique: 354, success, outsize: 24
+unique: 356, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84069
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 26624
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 27648
+	im: get_inode 2
+	im: put_inode 2
+   unique: 356, success, outsize: 24
+unique: 358, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84069
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 27648
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 28672
+	im: get_inode 2
+	im: put_inode 2
+   unique: 358, success, outsize: 24
+unique: 360, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84069
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 28672
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 29696
+	im: get_inode 2
+	im: put_inode 2
+   unique: 360, success, outsize: 24
+unique: 362, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84069
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 29696
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 30720
+	im: get_inode 2
+	im: put_inode 2
+   unique: 362, success, outsize: 24
+unique: 364, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84069
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 30720
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 31744
+	im: get_inode 2
+	im: put_inode 2
+   unique: 364, success, outsize: 24
+unique: 366, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84069
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 31744
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 32768
+	im: get_inode 2
+	im: put_inode 2
+   unique: 366, success, outsize: 24
+unique: 368, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84069
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 32768
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 33792
+	im: get_inode 2
+	im: put_inode 2
+   unique: 368, success, outsize: 24
+unique: 370, opcode: RELEASE (18), nodeid: 2, insize: 64, pid: 0
+   unique: 370, success, outsize: 16
+unique: 372, opcode: LOOKUP (1), nodeid: 1, insize: 48, pid: 84091
+[INFO]File: chfs_client.cc line: 293: look for file foo.txt in parent 1
+extent_server: get 1
+	im: get_inode 1
+extent_server: getattr 1
+	im: get_inode 1
+isdir: 1 is a dir
+[INFO]File: chfs_client.cc line: 316: dirent.name is foo.txt	dirent.inum is 2
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 372, success, outsize: 144
+unique: 374, opcode: GETATTR (3), nodeid: 2, insize: 56, pid: 84091
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 374, success, outsize: 120
+unique: 376, opcode: LOOKUP (1), nodeid: 1, insize: 48, pid: 84091
+[INFO]File: chfs_client.cc line: 293: look for file foo.txt in parent 1
+extent_server: get 1
+	im: get_inode 1
+extent_server: getattr 1
+	im: get_inode 1
+isdir: 1 is a dir
+[INFO]File: chfs_client.cc line: 316: dirent.name is foo.txt	dirent.inum is 2
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 376, success, outsize: 144
+unique: 378, opcode: OPEN (14), nodeid: 2, insize: 48, pid: 84091
+   unique: 378, success, outsize: 32
+unique: 380, opcode: READ (15), nodeid: 2, insize: 80, pid: 84091
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 377: read file 2	size is 16384	offset is 0	file size is 33792
+   unique: 380, success, outsize: 16400
+unique: 382, opcode: READ (15), nodeid: 2, insize: 80, pid: 84091
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 377: read file 2	size is 20480	offset is 16384	file size is 33792
+   unique: 382, success, outsize: 17424
+unique: 384, opcode: GETATTR (3), nodeid: 2, insize: 56, pid: 84091
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 384, success, outsize: 120
+unique: 386, opcode: GETATTR (3), nodeid: 2, insize: 56, pid: 84091
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 386, success, outsize: 120
+unique: 388, opcode: RELEASE (18), nodeid: 2, insize: 64, pid: 0
+   unique: 388, success, outsize: 16
+unique: 390, opcode: LOOKUP (1), nodeid: 1, insize: 48, pid: 84093
+[INFO]File: chfs_client.cc line: 293: look for file foo.txt in parent 1
+extent_server: get 1
+	im: get_inode 1
+extent_server: getattr 1
+	im: get_inode 1
+isdir: 1 is a dir
+[INFO]File: chfs_client.cc line: 316: dirent.name is foo.txt	dirent.inum is 2
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 390, success, outsize: 144
+unique: 392, opcode: GETATTR (3), nodeid: 2, insize: 56, pid: 84093
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 392, success, outsize: 120
+unique: 394, opcode: LOOKUP (1), nodeid: 1, insize: 48, pid: 84093
+[INFO]File: chfs_client.cc line: 293: look for file foo.txt in parent 1
+extent_server: get 1
+	im: get_inode 1
+extent_server: getattr 1
+	im: get_inode 1
+isdir: 1 is a dir
+[INFO]File: chfs_client.cc line: 316: dirent.name is foo.txt	dirent.inum is 2
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 394, success, outsize: 144
+unique: 396, opcode: UNLINK (10), nodeid: 1, insize: 48, pid: 84093
+extent_server: get 1
+	im: get_inode 1
+extent_server: write 2
+	im: get_inode 2
+	im: get_inode 1
+	im: put_inode 1
+   unique: 396, success, outsize: 16
+unique: 398, opcode: FORGET (2), nodeid: 2, insize: 48, pid: 0
+unique: 400, opcode: LOOKUP (1), nodeid: 1, insize: 48, pid: 84127
+[INFO]File: chfs_client.cc line: 293: look for file foo.txt in parent 1
+extent_server: get 1
+	im: get_inode 1
+read an empty file
+extent_server: getattr 1
+	im: get_inode 1
+isdir: 1 is a dir
+   unique: 400, error: -2 (No such file or directory), outsize: 16
+unique: 402, opcode: CREATE (35), nodeid: 1, insize: 64, pid: 84127
+[INFO]File: chfs_client.cc line: 196: create file foo.txt in 1
+extent_server: get 1
+	im: get_inode 1
+read an empty file
+[INFO]File: chfs_client.cc line: 293: look for file foo.txt in parent 1
+extent_server: get 1
+	im: get_inode 1
+read an empty file
+extent_server: getattr 1
+	im: get_inode 1
+isdir: 1 is a dir
+extent_server: create inode
+[INFO]File: chfs_client.cc line: 224: new dirent.name is foo.txt	dirent.num is 2	im: get_inode 1
+	im: put_inode 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 0
+   getattr -> 0
+   unique: 402, success, outsize: 160
+OK: create returns.
+unique: 404, opcode: SETATTR (4), nodeid: 2, insize: 128, pid: 84127
+fuseserver_setattr 0x8
+   fuseserver_setattr set size to 3072
+extent_server: get 2
+	im: get_inode 2
+read an empty file
+	im: get_inode 2
+	im: put_inode 2
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 3072
+   getattr -> 3072
+   unique: 404, success, outsize: 120
+unique: 406, opcode: IOCTL (39), nodeid: 2, insize: 72, pid: 84127
+   unique: 406, error: -38 (Function not implemented), outsize: 16
+unique: 408, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84127
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 3072
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 4096
+	im: get_inode 2
+	im: put_inode 2
+   unique: 408, success, outsize: 24
+unique: 410, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84127
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 4096
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 5120
+	im: get_inode 2
+	im: put_inode 2
+   unique: 410, success, outsize: 24
+unique: 412, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84127
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 5120
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 6144
+	im: get_inode 2
+	im: put_inode 2
+   unique: 412, success, outsize: 24
+unique: 414, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84127
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 6144
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 7168
+	im: get_inode 2
+	im: put_inode 2
+   unique: 414, success, outsize: 24
+unique: 416, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84127
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 7168
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 8192
+	im: get_inode 2
+	im: put_inode 2
+   unique: 416, success, outsize: 24
+unique: 418, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84127
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 8192
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 9216
+	im: get_inode 2
+	im: put_inode 2
+   unique: 418, success, outsize: 24
+unique: 420, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84127
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 9216
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 10240
+	im: get_inode 2
+	im: put_inode 2
+   unique: 420, success, outsize: 24
+unique: 422, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84127
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 10240
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 11264
+	im: get_inode 2
+	im: put_inode 2
+   unique: 422, success, outsize: 24
+unique: 424, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84127
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 11264
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 12288
+	im: get_inode 2
+	im: put_inode 2
+   unique: 424, success, outsize: 24
+unique: 426, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84127
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 12288
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 13312
+	im: get_inode 2
+	im: put_inode 2
+   unique: 426, success, outsize: 24
+unique: 428, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84127
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 13312
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 14336
+	im: get_inode 2
+	im: put_inode 2
+   unique: 428, success, outsize: 24
+unique: 430, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84127
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 14336
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 15360
+	im: get_inode 2
+	im: put_inode 2
+   unique: 430, success, outsize: 24
+unique: 432, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84127
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 15360
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 16384
+	im: get_inode 2
+	im: put_inode 2
+   unique: 432, success, outsize: 24
+unique: 434, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84127
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 16384
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 17408
+	im: get_inode 2
+	im: put_inode 2
+   unique: 434, success, outsize: 24
+unique: 436, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84127
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 17408
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 18432
+	im: get_inode 2
+	im: put_inode 2
+   unique: 436, success, outsize: 24
+unique: 438, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84127
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 18432
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 19456
+	im: get_inode 2
+	im: put_inode 2
+   unique: 438, success, outsize: 24
+unique: 440, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84127
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 19456
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 20480
+	im: get_inode 2
+	im: put_inode 2
+   unique: 440, success, outsize: 24
+unique: 442, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84127
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 20480
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 21504
+	im: get_inode 2
+	im: put_inode 2
+   unique: 442, success, outsize: 24
+unique: 444, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84127
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 21504
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 22528
+	im: get_inode 2
+	im: put_inode 2
+   unique: 444, success, outsize: 24
+unique: 446, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84127
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 22528
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 23552
+	im: get_inode 2
+	im: put_inode 2
+   unique: 446, success, outsize: 24
+unique: 448, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84127
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 23552
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 24576
+	im: get_inode 2
+	im: put_inode 2
+   unique: 448, success, outsize: 24
+unique: 450, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84127
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 24576
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 25600
+	im: get_inode 2
+	im: put_inode 2
+   unique: 450, success, outsize: 24
+unique: 452, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84127
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 25600
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 26624
+	im: get_inode 2
+	im: put_inode 2
+   unique: 452, success, outsize: 24
+unique: 454, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84127
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 26624
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 27648
+	im: get_inode 2
+	im: put_inode 2
+   unique: 454, success, outsize: 24
+unique: 456, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84127
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 27648
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 28672
+	im: get_inode 2
+	im: put_inode 2
+   unique: 456, success, outsize: 24
+unique: 458, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84127
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 28672
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 29696
+	im: get_inode 2
+	im: put_inode 2
+   unique: 458, success, outsize: 24
+unique: 460, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84127
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 29696
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 30720
+	im: get_inode 2
+	im: put_inode 2
+   unique: 460, success, outsize: 24
+unique: 462, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84127
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 30720
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 31744
+	im: get_inode 2
+	im: put_inode 2
+   unique: 462, success, outsize: 24
+unique: 464, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84127
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 31744
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 32768
+	im: get_inode 2
+	im: put_inode 2
+   unique: 464, success, outsize: 24
+unique: 466, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84127
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 32768
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 33792
+	im: get_inode 2
+	im: put_inode 2
+   unique: 466, success, outsize: 24
+unique: 468, opcode: RELEASE (18), nodeid: 2, insize: 64, pid: 0
+   unique: 468, success, outsize: 16
+unique: 470, opcode: LOOKUP (1), nodeid: 1, insize: 48, pid: 84145
+[INFO]File: chfs_client.cc line: 293: look for file foo.txt in parent 1
+extent_server: get 1
+	im: get_inode 1
+extent_server: getattr 1
+	im: get_inode 1
+isdir: 1 is a dir
+[INFO]File: chfs_client.cc line: 316: dirent.name is foo.txt	dirent.inum is 2
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 470, success, outsize: 144
+unique: 472, opcode: GETATTR (3), nodeid: 2, insize: 56, pid: 84145
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 472, success, outsize: 120
+unique: 474, opcode: LOOKUP (1), nodeid: 1, insize: 48, pid: 84145
+[INFO]File: chfs_client.cc line: 293: look for file foo.txt in parent 1
+extent_server: get 1
+	im: get_inode 1
+extent_server: getattr 1
+	im: get_inode 1
+isdir: 1 is a dir
+[INFO]File: chfs_client.cc line: 316: dirent.name is foo.txt	dirent.inum is 2
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 474, success, outsize: 144
+unique: 476, opcode: OPEN (14), nodeid: 2, insize: 48, pid: 84145
+   unique: 476, success, outsize: 32
+unique: 478, opcode: READ (15), nodeid: 2, insize: 80, pid: 84145
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 377: read file 2	size is 16384	offset is 0	file size is 33792
+   unique: 478, success, outsize: 16400
+unique: 480, opcode: READ (15), nodeid: 2, insize: 80, pid: 84145
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 377: read file 2	size is 20480	offset is 16384	file size is 33792
+   unique: 480, success, outsize: 17424
+unique: 482, opcode: GETATTR (3), nodeid: 2, insize: 56, pid: 84145
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 482, success, outsize: 120
+unique: 484, opcode: GETATTR (3), nodeid: 2, insize: 56, pid: 84145
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 484, success, outsize: 120
+unique: 486, opcode: RELEASE (18), nodeid: 2, insize: 64, pid: 0
+   unique: 486, success, outsize: 16
+unique: 488, opcode: LOOKUP (1), nodeid: 1, insize: 48, pid: 84150
+[INFO]File: chfs_client.cc line: 293: look for file foo.txt in parent 1
+extent_server: get 1
+	im: get_inode 1
+extent_server: getattr 1
+	im: get_inode 1
+isdir: 1 is a dir
+[INFO]File: chfs_client.cc line: 316: dirent.name is foo.txt	dirent.inum is 2
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 488, success, outsize: 144
+unique: 490, opcode: GETATTR (3), nodeid: 2, insize: 56, pid: 84150
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 490, success, outsize: 120
+unique: 492, opcode: LOOKUP (1), nodeid: 1, insize: 48, pid: 84150
+[INFO]File: chfs_client.cc line: 293: look for file foo.txt in parent 1
+extent_server: get 1
+	im: get_inode 1
+extent_server: getattr 1
+	im: get_inode 1
+isdir: 1 is a dir
+[INFO]File: chfs_client.cc line: 316: dirent.name is foo.txt	dirent.inum is 2
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 492, success, outsize: 144
+unique: 494, opcode: UNLINK (10), nodeid: 1, insize: 48, pid: 84150
+extent_server: get 1
+	im: get_inode 1
+extent_server: write 2
+	im: get_inode 2
+	im: get_inode 1
+	im: put_inode 1
+   unique: 494, success, outsize: 16
+unique: 496, opcode: FORGET (2), nodeid: 2, insize: 48, pid: 0
+unique: 498, opcode: LOOKUP (1), nodeid: 1, insize: 48, pid: 84197
+[INFO]File: chfs_client.cc line: 293: look for file foo.txt in parent 1
+extent_server: get 1
+	im: get_inode 1
+read an empty file
+extent_server: getattr 1
+	im: get_inode 1
+isdir: 1 is a dir
+   unique: 498, error: -2 (No such file or directory), outsize: 16
+unique: 500, opcode: CREATE (35), nodeid: 1, insize: 64, pid: 84197
+[INFO]File: chfs_client.cc line: 196: create file foo.txt in 1
+extent_server: get 1
+	im: get_inode 1
+read an empty file
+[INFO]File: chfs_client.cc line: 293: look for file foo.txt in parent 1
+extent_server: get 1
+	im: get_inode 1
+read an empty file
+extent_server: getattr 1
+	im: get_inode 1
+isdir: 1 is a dir
+extent_server: create inode
+[INFO]File: chfs_client.cc line: 224: new dirent.name is foo.txt	dirent.num is 2	im: get_inode 1
+	im: put_inode 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 0
+   getattr -> 0
+   unique: 500, success, outsize: 160
+OK: create returns.
+unique: 502, opcode: SETATTR (4), nodeid: 2, insize: 128, pid: 84197
+fuseserver_setattr 0x8
+   fuseserver_setattr set size to 3072
+extent_server: get 2
+	im: get_inode 2
+read an empty file
+	im: get_inode 2
+	im: put_inode 2
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 3072
+   getattr -> 3072
+   unique: 502, success, outsize: 120
+unique: 504, opcode: IOCTL (39), nodeid: 2, insize: 72, pid: 84197
+   unique: 504, error: -38 (Function not implemented), outsize: 16
+unique: 506, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84197
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 3072
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 4096
+	im: get_inode 2
+	im: put_inode 2
+   unique: 506, success, outsize: 24
+unique: 508, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84197
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 4096
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 5120
+	im: get_inode 2
+	im: put_inode 2
+   unique: 508, success, outsize: 24
+unique: 510, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84197
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 5120
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 6144
+	im: get_inode 2
+	im: put_inode 2
+   unique: 510, success, outsize: 24
+unique: 512, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84197
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 6144
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 7168
+	im: get_inode 2
+	im: put_inode 2
+   unique: 512, success, outsize: 24
+unique: 514, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84197
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 7168
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 8192
+	im: get_inode 2
+	im: put_inode 2
+   unique: 514, success, outsize: 24
+unique: 516, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84197
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 8192
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 9216
+	im: get_inode 2
+	im: put_inode 2
+   unique: 516, success, outsize: 24
+unique: 518, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84197
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 9216
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 10240
+	im: get_inode 2
+	im: put_inode 2
+   unique: 518, success, outsize: 24
+unique: 520, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84197
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 10240
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 11264
+	im: get_inode 2
+	im: put_inode 2
+   unique: 520, success, outsize: 24
+unique: 522, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84197
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 11264
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 12288
+	im: get_inode 2
+	im: put_inode 2
+   unique: 522, success, outsize: 24
+unique: 524, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84197
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 12288
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 13312
+	im: get_inode 2
+	im: put_inode 2
+   unique: 524, success, outsize: 24
+unique: 526, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84197
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 13312
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 14336
+	im: get_inode 2
+	im: put_inode 2
+   unique: 526, success, outsize: 24
+unique: 528, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84197
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 14336
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 15360
+	im: get_inode 2
+	im: put_inode 2
+   unique: 528, success, outsize: 24
+unique: 530, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84197
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 15360
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 16384
+	im: get_inode 2
+	im: put_inode 2
+   unique: 530, success, outsize: 24
+unique: 532, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84197
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 16384
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 17408
+	im: get_inode 2
+	im: put_inode 2
+   unique: 532, success, outsize: 24
+unique: 534, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84197
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 17408
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 18432
+	im: get_inode 2
+	im: put_inode 2
+   unique: 534, success, outsize: 24
+unique: 536, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84197
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 18432
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 19456
+	im: get_inode 2
+	im: put_inode 2
+   unique: 536, success, outsize: 24
+unique: 538, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84197
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 19456
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 20480
+	im: get_inode 2
+	im: put_inode 2
+   unique: 538, success, outsize: 24
+unique: 540, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84197
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 20480
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 21504
+	im: get_inode 2
+	im: put_inode 2
+   unique: 540, success, outsize: 24
+unique: 542, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84197
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 21504
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 22528
+	im: get_inode 2
+	im: put_inode 2
+   unique: 542, success, outsize: 24
+unique: 544, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84197
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 22528
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 23552
+	im: get_inode 2
+	im: put_inode 2
+   unique: 544, success, outsize: 24
+unique: 546, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84197
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 23552
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 24576
+	im: get_inode 2
+	im: put_inode 2
+   unique: 546, success, outsize: 24
+unique: 548, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84197
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 24576
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 25600
+	im: get_inode 2
+	im: put_inode 2
+   unique: 548, success, outsize: 24
+unique: 550, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84197
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 25600
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 26624
+	im: get_inode 2
+	im: put_inode 2
+   unique: 550, success, outsize: 24
+unique: 552, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84197
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 26624
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 27648
+	im: get_inode 2
+	im: put_inode 2
+   unique: 552, success, outsize: 24
+unique: 554, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84197
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 27648
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 28672
+	im: get_inode 2
+	im: put_inode 2
+   unique: 554, success, outsize: 24
+unique: 556, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84197
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 28672
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 29696
+	im: get_inode 2
+	im: put_inode 2
+   unique: 556, success, outsize: 24
+unique: 558, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84197
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 29696
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 30720
+	im: get_inode 2
+	im: put_inode 2
+   unique: 558, success, outsize: 24
+unique: 560, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84197
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 30720
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 31744
+	im: get_inode 2
+	im: put_inode 2
+   unique: 560, success, outsize: 24
+unique: 562, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84197
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 31744
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 32768
+	im: get_inode 2
+	im: put_inode 2
+   unique: 562, success, outsize: 24
+unique: 564, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 84197
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 32768
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 33792
+	im: get_inode 2
+	im: put_inode 2
+   unique: 564, success, outsize: 24
+unique: 566, opcode: RELEASE (18), nodeid: 2, insize: 64, pid: 0
+   unique: 566, success, outsize: 16
+unique: 568, opcode: LOOKUP (1), nodeid: 1, insize: 48, pid: 84219
+[INFO]File: chfs_client.cc line: 293: look for file foo.txt in parent 1
+extent_server: get 1
+	im: get_inode 1
+extent_server: getattr 1
+	im: get_inode 1
+isdir: 1 is a dir
+[INFO]File: chfs_client.cc line: 316: dirent.name is foo.txt	dirent.inum is 2
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 568, success, outsize: 144
+unique: 570, opcode: GETATTR (3), nodeid: 2, insize: 56, pid: 84219
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 570, success, outsize: 120
+unique: 572, opcode: LOOKUP (1), nodeid: 1, insize: 48, pid: 84219
+[INFO]File: chfs_client.cc line: 293: look for file foo.txt in parent 1
+extent_server: get 1
+	im: get_inode 1
+extent_server: getattr 1
+	im: get_inode 1
+isdir: 1 is a dir
+[INFO]File: chfs_client.cc line: 316: dirent.name is foo.txt	dirent.inum is 2
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 572, success, outsize: 144
+unique: 574, opcode: OPEN (14), nodeid: 2, insize: 48, pid: 84219
+   unique: 574, success, outsize: 32
+unique: 576, opcode: READ (15), nodeid: 2, insize: 80, pid: 84219
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 377: read file 2	size is 16384	offset is 0	file size is 33792
+   unique: 576, success, outsize: 16400
+unique: 578, opcode: READ (15), nodeid: 2, insize: 80, pid: 84219
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 377: read file 2	size is 20480	offset is 16384	file size is 33792
+   unique: 578, success, outsize: 17424
+unique: 580, opcode: GETATTR (3), nodeid: 2, insize: 56, pid: 84219
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 580, success, outsize: 120
+unique: 582, opcode: GETATTR (3), nodeid: 2, insize: 56, pid: 84219
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 582, success, outsize: 120
+unique: 584, opcode: RELEASE (18), nodeid: 2, insize: 64, pid: 0
+   unique: 584, success, outsize: 16
+unique: 586, opcode: LOOKUP (1), nodeid: 1, insize: 48, pid: 84221
+[INFO]File: chfs_client.cc line: 293: look for file foo.txt in parent 1
+extent_server: get 1
+	im: get_inode 1
+extent_server: getattr 1
+	im: get_inode 1
+isdir: 1 is a dir
+[INFO]File: chfs_client.cc line: 316: dirent.name is foo.txt	dirent.inum is 2
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 586, success, outsize: 144
+unique: 588, opcode: GETATTR (3), nodeid: 2, insize: 56, pid: 84221
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 588, success, outsize: 120
+unique: 590, opcode: LOOKUP (1), nodeid: 1, insize: 48, pid: 84221
+[INFO]File: chfs_client.cc line: 293: look for file foo.txt in parent 1
+extent_server: get 1
+	im: get_inode 1
+extent_server: getattr 1
+	im: get_inode 1
+isdir: 1 is a dir
+[INFO]File: chfs_client.cc line: 316: dirent.name is foo.txt	dirent.inum is 2
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 590, success, outsize: 144
+unique: 592, opcode: UNLINK (10), nodeid: 1, insize: 48, pid: 84221
+extent_server: get 1
+	im: get_inode 1
+extent_server: write 2
+	im: get_inode 2
+	im: get_inode 1
+	im: put_inode 1
+   unique: 592, success, outsize: 16
+unique: 594, opcode: FORGET (2), nodeid: 2, insize: 48, pid: 0
+unique: 596, opcode: LOOKUP (1), nodeid: 1, insize: 48, pid: 86897
+[INFO]File: chfs_client.cc line: 293: look for file foo.txt in parent 1
+extent_server: get 1
+	im: get_inode 1
+read an empty file
+extent_server: getattr 1
+	im: get_inode 1
+isdir: 1 is a dir
+   unique: 596, error: -2 (No such file or directory), outsize: 16
+unique: 598, opcode: CREATE (35), nodeid: 1, insize: 64, pid: 86897
+[INFO]File: chfs_client.cc line: 196: create file foo.txt in 1
+extent_server: get 1
+	im: get_inode 1
+read an empty file
+[INFO]File: chfs_client.cc line: 293: look for file foo.txt in parent 1
+extent_server: get 1
+	im: get_inode 1
+read an empty file
+extent_server: getattr 1
+	im: get_inode 1
+isdir: 1 is a dir
+extent_server: create inode
+[INFO]File: chfs_client.cc line: 224: new dirent.name is foo.txt	dirent.num is 2	im: get_inode 1
+	im: put_inode 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 0
+   getattr -> 0
+   unique: 598, success, outsize: 160
+OK: create returns.
+unique: 600, opcode: SETATTR (4), nodeid: 2, insize: 128, pid: 86897
+fuseserver_setattr 0x8
+   fuseserver_setattr set size to 3072
+extent_server: get 2
+	im: get_inode 2
+read an empty file
+	im: get_inode 2
+	im: put_inode 2
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 3072
+   getattr -> 3072
+   unique: 600, success, outsize: 120
+unique: 602, opcode: IOCTL (39), nodeid: 2, insize: 72, pid: 86897
+   unique: 602, error: -38 (Function not implemented), outsize: 16
+unique: 604, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86897
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 3072
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 4096
+	im: get_inode 2
+	im: put_inode 2
+   unique: 604, success, outsize: 24
+unique: 606, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86897
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 4096
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 5120
+	im: get_inode 2
+	im: put_inode 2
+   unique: 606, success, outsize: 24
+unique: 608, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86897
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 5120
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 6144
+	im: get_inode 2
+	im: put_inode 2
+   unique: 608, success, outsize: 24
+unique: 610, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86897
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 6144
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 7168
+	im: get_inode 2
+	im: put_inode 2
+   unique: 610, success, outsize: 24
+unique: 612, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86897
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 7168
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 8192
+	im: get_inode 2
+	im: put_inode 2
+   unique: 612, success, outsize: 24
+unique: 614, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86897
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 8192
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 9216
+	im: get_inode 2
+	im: put_inode 2
+   unique: 614, success, outsize: 24
+unique: 616, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86897
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 9216
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 10240
+	im: get_inode 2
+	im: put_inode 2
+   unique: 616, success, outsize: 24
+unique: 618, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86897
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 10240
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 11264
+	im: get_inode 2
+	im: put_inode 2
+   unique: 618, success, outsize: 24
+unique: 620, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86897
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 11264
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 12288
+	im: get_inode 2
+	im: put_inode 2
+   unique: 620, success, outsize: 24
+unique: 622, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86897
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 12288
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 13312
+	im: get_inode 2
+	im: put_inode 2
+   unique: 622, success, outsize: 24
+unique: 624, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86897
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 13312
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 14336
+	im: get_inode 2
+	im: put_inode 2
+   unique: 624, success, outsize: 24
+unique: 626, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86897
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 14336
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 15360
+	im: get_inode 2
+	im: put_inode 2
+   unique: 626, success, outsize: 24
+unique: 628, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86897
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 15360
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 16384
+	im: get_inode 2
+	im: put_inode 2
+   unique: 628, success, outsize: 24
+unique: 630, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86897
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 16384
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 17408
+	im: get_inode 2
+	im: put_inode 2
+   unique: 630, success, outsize: 24
+unique: 632, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86897
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 17408
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 18432
+	im: get_inode 2
+	im: put_inode 2
+   unique: 632, success, outsize: 24
+unique: 634, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86897
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 18432
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 19456
+	im: get_inode 2
+	im: put_inode 2
+   unique: 634, success, outsize: 24
+unique: 636, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86897
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 19456
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 20480
+	im: get_inode 2
+	im: put_inode 2
+   unique: 636, success, outsize: 24
+unique: 638, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86897
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 20480
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 21504
+	im: get_inode 2
+	im: put_inode 2
+   unique: 638, success, outsize: 24
+unique: 640, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86897
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 21504
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 22528
+	im: get_inode 2
+	im: put_inode 2
+   unique: 640, success, outsize: 24
+unique: 642, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86897
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 22528
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 23552
+	im: get_inode 2
+	im: put_inode 2
+   unique: 642, success, outsize: 24
+unique: 644, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86897
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 23552
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 24576
+	im: get_inode 2
+	im: put_inode 2
+   unique: 644, success, outsize: 24
+unique: 646, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86897
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 24576
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 25600
+	im: get_inode 2
+	im: put_inode 2
+   unique: 646, success, outsize: 24
+unique: 648, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86897
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 25600
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 26624
+	im: get_inode 2
+	im: put_inode 2
+   unique: 648, success, outsize: 24
+unique: 650, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86897
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 26624
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 27648
+	im: get_inode 2
+	im: put_inode 2
+   unique: 650, success, outsize: 24
+unique: 652, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86897
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 27648
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 28672
+	im: get_inode 2
+	im: put_inode 2
+   unique: 652, success, outsize: 24
+unique: 654, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86897
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 28672
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 29696
+	im: get_inode 2
+	im: put_inode 2
+   unique: 654, success, outsize: 24
+unique: 656, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86897
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 29696
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 30720
+	im: get_inode 2
+	im: put_inode 2
+   unique: 656, success, outsize: 24
+unique: 658, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86897
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 30720
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 31744
+	im: get_inode 2
+	im: put_inode 2
+   unique: 658, success, outsize: 24
+unique: 660, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86897
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 31744
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 32768
+	im: get_inode 2
+	im: put_inode 2
+   unique: 660, success, outsize: 24
+unique: 662, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86897
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 32768
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 33792
+	im: get_inode 2
+	im: put_inode 2
+   unique: 662, success, outsize: 24
+unique: 664, opcode: RELEASE (18), nodeid: 2, insize: 64, pid: 0
+   unique: 664, success, outsize: 16
+unique: 666, opcode: LOOKUP (1), nodeid: 1, insize: 48, pid: 86919
+[INFO]File: chfs_client.cc line: 293: look for file foo.txt in parent 1
+extent_server: get 1
+	im: get_inode 1
+extent_server: getattr 1
+	im: get_inode 1
+isdir: 1 is a dir
+[INFO]File: chfs_client.cc line: 316: dirent.name is foo.txt	dirent.inum is 2
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 666, success, outsize: 144
+unique: 668, opcode: GETATTR (3), nodeid: 2, insize: 56, pid: 86919
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 668, success, outsize: 120
+unique: 670, opcode: LOOKUP (1), nodeid: 1, insize: 48, pid: 86919
+[INFO]File: chfs_client.cc line: 293: look for file foo.txt in parent 1
+extent_server: get 1
+	im: get_inode 1
+extent_server: getattr 1
+	im: get_inode 1
+isdir: 1 is a dir
+[INFO]File: chfs_client.cc line: 316: dirent.name is foo.txt	dirent.inum is 2
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 670, success, outsize: 144
+unique: 672, opcode: OPEN (14), nodeid: 2, insize: 48, pid: 86919
+   unique: 672, success, outsize: 32
+unique: 674, opcode: READ (15), nodeid: 2, insize: 80, pid: 86919
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 377: read file 2	size is 16384	offset is 0	file size is 33792
+   unique: 674, success, outsize: 16400
+unique: 676, opcode: READ (15), nodeid: 2, insize: 80, pid: 86919
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 377: read file 2	size is 20480	offset is 16384	file size is 33792
+   unique: 676, success, outsize: 17424
+unique: 678, opcode: GETATTR (3), nodeid: 2, insize: 56, pid: 86919
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 678, success, outsize: 120
+unique: 680, opcode: GETATTR (3), nodeid: 2, insize: 56, pid: 86919
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 680, success, outsize: 120
+unique: 682, opcode: RELEASE (18), nodeid: 2, insize: 64, pid: 0
+   unique: 682, success, outsize: 16
+unique: 684, opcode: LOOKUP (1), nodeid: 1, insize: 48, pid: 86920
+[INFO]File: chfs_client.cc line: 293: look for file foo.txt in parent 1
+extent_server: get 1
+	im: get_inode 1
+extent_server: getattr 1
+	im: get_inode 1
+isdir: 1 is a dir
+[INFO]File: chfs_client.cc line: 316: dirent.name is foo.txt	dirent.inum is 2
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 684, success, outsize: 144
+unique: 686, opcode: GETATTR (3), nodeid: 2, insize: 56, pid: 86920
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 686, success, outsize: 120
+unique: 688, opcode: LOOKUP (1), nodeid: 1, insize: 48, pid: 86920
+[INFO]File: chfs_client.cc line: 293: look for file foo.txt in parent 1
+extent_server: get 1
+	im: get_inode 1
+extent_server: getattr 1
+	im: get_inode 1
+isdir: 1 is a dir
+[INFO]File: chfs_client.cc line: 316: dirent.name is foo.txt	dirent.inum is 2
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 33792
+   getattr -> 33792
+   unique: 688, success, outsize: 144
+unique: 690, opcode: UNLINK (10), nodeid: 1, insize: 48, pid: 86920
+extent_server: get 1
+	im: get_inode 1
+extent_server: write 2
+	im: get_inode 2
+	im: get_inode 1
+	im: put_inode 1
+   unique: 690, success, outsize: 16
+unique: 692, opcode: FORGET (2), nodeid: 2, insize: 48, pid: 0
+unique: 694, opcode: LOOKUP (1), nodeid: 1, insize: 48, pid: 86942
+[INFO]File: chfs_client.cc line: 293: look for file foo.txt in parent 1
+extent_server: get 1
+	im: get_inode 1
+read an empty file
+extent_server: getattr 1
+	im: get_inode 1
+isdir: 1 is a dir
+   unique: 694, error: -2 (No such file or directory), outsize: 16
+unique: 696, opcode: CREATE (35), nodeid: 1, insize: 64, pid: 86942
+[INFO]File: chfs_client.cc line: 196: create file foo.txt in 1
+extent_server: get 1
+	im: get_inode 1
+read an empty file
+[INFO]File: chfs_client.cc line: 293: look for file foo.txt in parent 1
+extent_server: get 1
+	im: get_inode 1
+read an empty file
+extent_server: getattr 1
+	im: get_inode 1
+isdir: 1 is a dir
+extent_server: create inode
+[INFO]File: chfs_client.cc line: 224: new dirent.name is foo.txt	dirent.num is 2	im: get_inode 1
+	im: put_inode 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 0
+   getattr -> 0
+   unique: 696, success, outsize: 160
+OK: create returns.
+unique: 698, opcode: SETATTR (4), nodeid: 2, insize: 128, pid: 86942
+fuseserver_setattr 0x8
+   fuseserver_setattr set size to 3072
+extent_server: get 2
+	im: get_inode 2
+read an empty file
+	im: get_inode 2
+	im: put_inode 2
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getattr 0000000000000002 1
+extent_server: getattr 2
+	im: get_inode 2
+isfile: 2 is a file
+getfile 0000000000000002
+extent_server: getattr 2
+	im: get_inode 2
+getfile 0000000000000002 -> sz 3072
+   getattr -> 3072
+   unique: 698, success, outsize: 120
+unique: 700, opcode: IOCTL (39), nodeid: 2, insize: 72, pid: 86942
+   unique: 700, error: -38 (Function not implemented), outsize: 16
+unique: 702, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86942
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 3072
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 4096
+	im: get_inode 2
+	im: put_inode 2
+   unique: 702, success, outsize: 24
+unique: 704, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86942
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 4096
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 5120
+	im: get_inode 2
+	im: put_inode 2
+   unique: 704, success, outsize: 24
+unique: 706, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86942
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 5120
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 6144
+	im: get_inode 2
+	im: put_inode 2
+   unique: 706, success, outsize: 24
+unique: 708, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86942
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 6144
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 7168
+	im: get_inode 2
+	im: put_inode 2
+   unique: 708, success, outsize: 24
+unique: 710, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86942
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 7168
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 8192
+	im: get_inode 2
+	im: put_inode 2
+   unique: 710, success, outsize: 24
+unique: 712, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86942
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 8192
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 9216
+	im: get_inode 2
+	im: put_inode 2
+   unique: 712, success, outsize: 24
+unique: 714, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86942
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 9216
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 10240
+	im: get_inode 2
+	im: put_inode 2
+   unique: 714, success, outsize: 24
+unique: 716, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86942
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 10240
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 11264
+	im: get_inode 2
+	im: put_inode 2
+   unique: 716, success, outsize: 24
+unique: 718, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86942
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 11264
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 12288
+	im: get_inode 2
+	im: put_inode 2
+   unique: 718, success, outsize: 24
+unique: 720, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86942
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 12288
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 13312
+	im: get_inode 2
+	im: put_inode 2
+   unique: 720, success, outsize: 24
+unique: 722, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86942
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 13312
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 14336
+	im: get_inode 2
+	im: put_inode 2
+   unique: 722, success, outsize: 24
+unique: 724, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86942
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 14336
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 15360
+	im: get_inode 2
+	im: put_inode 2
+   unique: 724, success, outsize: 24
+unique: 726, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86942
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 15360
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 16384
+	im: get_inode 2
+	im: put_inode 2
+   unique: 726, success, outsize: 24
+unique: 728, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86942
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 16384
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 17408
+	im: get_inode 2
+	im: put_inode 2
+   unique: 728, success, outsize: 24
+unique: 730, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86942
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 17408
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 18432
+	im: get_inode 2
+	im: put_inode 2
+   unique: 730, success, outsize: 24
+unique: 732, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86942
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 18432
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 19456
+	im: get_inode 2
+	im: put_inode 2
+   unique: 732, success, outsize: 24
+unique: 734, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86942
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 19456
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 20480
+	im: get_inode 2
+	im: put_inode 2
+   unique: 734, success, outsize: 24
+unique: 736, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86942
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 20480
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 21504
+	im: get_inode 2
+	im: put_inode 2
+   unique: 736, success, outsize: 24
+unique: 738, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86942
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 21504
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 22528
+	im: get_inode 2
+	im: put_inode 2
+   unique: 738, success, outsize: 24
+unique: 740, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86942
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 22528
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 23552
+	im: get_inode 2
+	im: put_inode 2
+   unique: 740, success, outsize: 24
+unique: 742, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86942
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 23552
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 24576
+	im: get_inode 2
+	im: put_inode 2
+   unique: 742, success, outsize: 24
+unique: 744, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86942
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 24576
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 25600
+	im: get_inode 2
+	im: put_inode 2
+   unique: 744, success, outsize: 24
+unique: 746, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86942
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 25600
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 26624
+	im: get_inode 2
+	im: put_inode 2
+   unique: 746, success, outsize: 24
+unique: 748, opcode: WRITE (16), nodeid: 2, insize: 1104, pid: 86942
+[INFO]File: chfs_client.cc line: 391: write file 2	size is 1024	offset is 26624
+extent_server: get 2
+	im: get_inode 2
+[INFO]File: chfs_client.cc line: 407: write bytes is 27648
+	im: get_inode 2
