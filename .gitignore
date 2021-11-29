@@ -1,5 +1,5 @@
 # IDE
-*.vscode
+/.vscode
 # macOS
 *.DS_Store
 # tgz files upload to canvas
@@ -7,3 +7,4 @@
 lab?_*.tgz
 # debug files
 *.txt
+*.log
