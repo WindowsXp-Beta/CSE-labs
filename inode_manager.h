@@ -56,15 +56,17 @@ class block_manager {
 
 // Block containing inode i
 #define IBLOCK(i, nblocks)     ((nblocks)/BPB + (i)/IPB + 3)
+// 找到inode number = i的inode所在的Block
 
 // Bitmap bits per block
 #define BPB           (BLOCK_SIZE*8)
+// 一个block有多少bit，也就是一个block作bitmap的话能表示多少个block的free情况
 
 // Block containing bit for block b
 #define BBLOCK(b) ((b)/BPB + 2)
 
 #define NDIRECT 100
-#define NINDIRECT (BLOCK_SIZE / sizeof(uint))
+#define NINDIRECT (BLOCK_SIZE / sizeof(uint)) //二级block
 #define MAXFILE (NDIRECT + NINDIRECT)
 
 typedef struct inode {
@@ -81,7 +83,11 @@ class inode_manager {
   block_manager *bm;
   struct inode* get_inode(uint32_t inum);
   void put_inode(uint32_t inum, struct inode *ino);
-
+  blockid_t get_nth_blockid(struct inode *ino, uint32_t nth);
+  void free_nth_block(struct inode *ino, uint32_t nth);
+  void write_nth_block(struct inode *ino, uint32_t nth, std::string &);
+  void alloc_nth_block(struct inode *ino, uint32_t nth, std::string &buf, bool to_write);
+  void read_nth_block(struct inode *ino, uint32_t nth, char* buf);
  public:
   inode_manager();
   uint32_t alloc_inode(uint32_t type);
