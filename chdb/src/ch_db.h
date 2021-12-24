@@ -130,6 +130,7 @@ public:
     std::vector<shard_client *> shards;
     int max_tx_id;
     std::mutex tx_id_mtx;
+    std::map<int, std::mutex> data_mtx;
 
 private:
     static int default_dispatch(const int key, int shard_num) {

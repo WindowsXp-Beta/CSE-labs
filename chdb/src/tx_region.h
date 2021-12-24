@@ -1,5 +1,5 @@
 #include "ch_db.h"
-
+#include <mutex>
 
 /*
  * tx_region: chdb KV client which supports transaction concurrency control.
@@ -21,10 +21,14 @@ public:
      * */
     int dummy() {
         int r;
-        this->db->vserver->execute(1,
-                                   chdb_protocol::Dummy,
-                                   chdb_protocol::operation_var{.tx_id = tx_id, .key = 1024, .value = 16},
-                                   r);
+        this->db->vserver->execute(
+            1, chdb_protocol::Dummy,
+            chdb_protocol::operation_var{
+                .tx_id = tx_id,
+                .key = 1024,
+                .value = 16
+            }, r
+        );
         return r;
     }
 
@@ -68,4 +72,5 @@ private:
 
     chdb *db;
     const int tx_id;
+    std::map<int, std::lock_guard<std::mutex>> data_mtx;
 };
