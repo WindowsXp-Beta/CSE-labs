@@ -4,7 +4,13 @@
 int shard_client::put(chdb_protocol::operation_var var, int &r) {
     // TODO: Your code here
     has_put = true;
-    undo_log[var.tx_id].emplace_back(var.key, value_entry(var.value));
+    int old_value;
+    try {
+        old_value = get_store().at(var.key).value;
+    } catch(const std::exception& e){
+        old_value = -1;
+    }
+    undo_log[var.tx_id].emplace_back(var.key, value_entry(old_value));
     for (auto &replica : store) {
         replica[var.key] = value_entry(var.value);
     }
@@ -16,7 +22,6 @@ int shard_client::get(chdb_protocol::operation_var var, int &r) {
     try {
         r = get_store().at(var.key).value;
     } catch(const std::exception& e){
-        std::cerr << e.what() << '\n';
         r = -1;
     }
     return 0;
@@ -24,20 +29,20 @@ int shard_client::get(chdb_protocol::operation_var var, int &r) {
 
 int shard_client::commit(chdb_protocol::commit_var var, int &r) {
     // TODO: Your code here
-    undo_log.erase(var.tx_id);
+    printf("current tx_id is %d\n", var.tx_id);
+    undo_log[var.tx_id].clear();
     has_put = false;
     return 0;
 }
 
 int shard_client::rollback(chdb_protocol::rollback_var var, int &r) {
     // TODO: Your code here
-    auto &put_log = undo_log[var.tx_id];
-    for (auto pair : put_log) {
+    auto &tx_undo_log = undo_log[var.tx_id];
+    for (auto undo_item : tx_undo_log) {
         for (auto &replica : store) {
-            replica.erase(pair.first);
+            replica[undo_item.first] = undo_item.second;
         }
     }
-    undo_log.erase(var.tx_id);
     has_put = false;
     return 0;
 }

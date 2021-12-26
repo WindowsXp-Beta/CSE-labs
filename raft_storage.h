@@ -73,6 +73,7 @@ void raft_storage<command>::persistmeta(int &current_term, int &vote_for) {
 
 template<typename command>
 void raft_storage<command>::persistlog(std::vector<log_entry<command>> log_list, int mIndex) {
+#if 0
     mtx.lock();
     if (mIndex == 0 || __lastlogsize == 1 || __lastlogsize < mIndex + 1) {
         int total_size = 8;
@@ -159,6 +160,7 @@ void raft_storage<command>::persistlog(std::vector<log_entry<command>> log_list,
         __lastlogsize = log_list_size;
     }
     mtx.unlock();
+#endif
 }
 
 template<typename command>

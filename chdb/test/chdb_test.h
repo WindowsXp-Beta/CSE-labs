@@ -1,5 +1,16 @@
 #include "../src/tx_region.h"
 
+#define DEBUG 0
+// flag = true means INFO
+// flag = false means ERROR
+#define debug_log(flag, ...) do{ \
+    if (DEBUG) { \
+      if (flag) printf("[INFO]File: %s line: %d: ", __FILE__, __LINE__); \
+      else printf("[ERROR]File: %s line: %d: ", __FILE__, __LINE__); \
+      printf(__VA_ARGS__); \
+      fflush(stdout); \
+    } }while(0);
+
 void tx_put_and_check(chdb *store) {
     int r;
     int write_val = 15, key_upper_bound = 10;
@@ -49,12 +60,14 @@ void tx_incr(chdb *store) {
         tx_region db_client(store);
         for (auto &key: keys) {
             int r = db_client.get(key);
+            debug_log(true, "key is %d\tvalue is %d\n", key, r);
             db_client.put(key, ++r);
         }
         ASSERT(db_client.tx_can_commit() == chdb_protocol::prepare_ok, "[tx incr] Transaction should commit");
 
         for (auto &key: keys) {
             int r = db_client.get(key);
+            debug_log(true, "key is %d\tvalue is %d\n", key, r);
             ASSERT(r == (key << 2) + 1, "[tx incr] Local transaction read bad");
         }
         ASSERT(db_client.tx_can_commit() == chdb_protocol::prepare_ok, "[tx incr] Transaction should commit");

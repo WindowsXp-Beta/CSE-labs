@@ -1,9 +1,32 @@
 #include "ch_db.h"
 #include <mutex>
+#include <ctime>
 
 /*
  * tx_region: chdb KV client which supports transaction concurrency control.
  * */
+
+class operation {
+public:
+    operation() = default;
+    virtual ~operation() = 0;
+};
+
+class put_operation : public operation {
+public:
+    put_operation(int key, int val) : key_(key), val_(val) {}
+    ~put_operation() {}
+    int key_;
+    int val_;
+};
+
+class get_operation : public operation {
+public:
+    get_operation(int key) : key_(key) {}
+    ~get_operation() {}
+    int key_;
+};
+
 class tx_region {
 public:
     tx_region(chdb *db) : db(db),
@@ -69,8 +92,13 @@ private:
      * Transaction abort. Sending `Rollback` messages to all of the shard clients
      * */
     int tx_abort();
+    
+    void clear();
+
+    void retry();
 
     chdb *db;
     const int tx_id;
     std::map<int, std::lock_guard<std::mutex>> data_mtx;
+    std::map<int, std::vector<operation *>> retry_log;
 };

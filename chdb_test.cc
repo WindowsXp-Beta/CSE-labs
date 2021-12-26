@@ -1,5 +1,16 @@
 #include "chdb/test/chdb_test.h"
 
+#define DEBUG 0
+/** @param flag = true means INFO false means ERROR
+ */
+#define debug_log(flag, ...) do{ \
+    if (DEBUG) { \
+      if (flag) printf("[INFO]File: %s line: %d: ", __FILE__, __LINE__); \
+      else printf("[ERROR]File: %s line: %d: ", __FILE__, __LINE__); \
+      printf(__VA_ARGS__); \
+      fflush(stdout); \
+    } }while(0);
+
 /**
  * ***************************
  *  Part 1
@@ -31,6 +42,7 @@ TEST_CASE(part1, simple_tx_abort, "Simple transaction of abort") {
 
         for (int key = 0; key < 3; ++key) {
             r = db_client.get(key);
+            debug_log(true, "key is %d\tvalue is %d\n", key, r);
             ASSERT(r == write_val + key, "local transaction read bad result");
         }
 
@@ -42,6 +54,7 @@ TEST_CASE(part1, simple_tx_abort, "Simple transaction of abort") {
         tx_region db_client(&store);
         for (int key = 0; key < 3; ++key) {
             r = db_client.get(key);
+            debug_log(true, "key is %d\tvalue is %d\n", key, r);
             ASSERT(r != write_val + key, "transaction read bad result");
         }
         ASSERT(db_client.tx_can_commit() == chdb_protocol::prepare_ok, "Transaction should commit");
@@ -490,7 +503,7 @@ TEST_CASE(part3, tx_lock_test_6, "(2PL)Test concurrent transaction") {
         }
         ASSERT(db_client.tx_can_commit() == chdb_protocol::prepare_ok, "Transaction should commit");
     }
-
+ 
     // run in parallel
     for (int i = 0; i < thr_num; ++i) {
         tx_list.push_back(new std::thread([&store, &keys]() {

@@ -62,6 +62,10 @@ public:
             const chdb_protocol::operation_var &var,
             int &r);
 
+    int
+    broad_cast(unsigned int proc,
+               const int tx_id,
+               int &r);
 
     ~view_server();
 
@@ -130,7 +134,10 @@ public:
     std::vector<shard_client *> shards;
     int max_tx_id;
     std::mutex tx_id_mtx;
+    // map key to its mutex
     std::map<int, std::mutex> data_mtx;
+    // map key to the its owner's timestamp
+    std::map<int, int> data_tx_id;
 
 private:
     static int default_dispatch(const int key, int shard_num) {
